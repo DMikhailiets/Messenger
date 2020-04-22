@@ -1,16 +1,14 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import style from './styles/index.module.scss'
 import { Route } from 'react-router-dom';
-import AuthorisationPage from './components/authorisation/authorisation';
-import MainPage from './components/main_page/main_page';
+import { Auth } from './pages';
+
 
 
 function App() {
   return (
     <div className="App">
-      <Route path="/main_page" render = { () => <MainPage/>}/>
-      <Route exact path="/" render = { () => <AuthorisationPage/>}/>
+      <Auth/>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './redux/store'
-import Button from './components/Button'
+
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,5 +1,12 @@
 .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
     &--large {
-      height: 36px !important;
+      height: 35px !important;
+      display: flex;
+  justify-content: center;
+  align-items: center;
     }
   }
