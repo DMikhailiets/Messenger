@@ -1,9 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
+import style from './styles/index.module.scss'
 import { Route } from 'react-router-dom';
 import AuthorisationPage from './components/authorisation/authorisation';
 import MainPage from './components/main_page/main_page';
-
 
 
 function App() {

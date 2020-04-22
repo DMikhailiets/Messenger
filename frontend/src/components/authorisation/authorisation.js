@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getAuthResponse } from '../../redux/authReducer';
 import { Redirect } from 'react-router-dom';
 
-const AuthorisationPage = (props:any) => {
+const AuthorisationPage =(props) => {     
   if(props.authData){
     return (
       <Redirect to='/main_page'/>
@@ -26,7 +26,7 @@ const AuthorisationPage = (props:any) => {
     )
 }
 
-let mapStateToProps = (state:any) => ({
+let mapStateToProps = (state) => ({
   authData: state.authorisationData.userData.logined
 })
 
