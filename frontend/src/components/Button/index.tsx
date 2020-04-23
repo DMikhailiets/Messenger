@@ -10,7 +10,7 @@ let Button  = (props:any) =>{
                 className={classNames("button", props.className, {
                     "button--large": props.size === "large"
                   })}
-                />
+                >{props.children}</BaseButton>
 }
 
 export default Button

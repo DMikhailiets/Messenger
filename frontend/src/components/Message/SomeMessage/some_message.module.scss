@@ -1,0 +1,32 @@
+.message_wrapper {
+    display: flex;
+    align-items: center;
+    margin: 5px 5px;
+}
+
+.message_content {
+    background-color: #1890FF;
+    color: white;
+    margin-bottom: 3px;
+    border-radius: 5px ;
+    padding: 5px 10px;
+    
+}
+
+.author_title {
+    color: white;
+    font-weight: 300;
+    margin-right: 5px;
+}
+
+.date_title {
+    font-size: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
