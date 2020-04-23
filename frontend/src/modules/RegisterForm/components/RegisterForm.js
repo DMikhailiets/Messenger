@@ -4,7 +4,6 @@ import { Block } from '../../../components'
 import style from './register_form.module.css'
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 
-import { validateField } from "../../../utils/helpers";
 
 export const RegisterForm = (props) => {
   const {

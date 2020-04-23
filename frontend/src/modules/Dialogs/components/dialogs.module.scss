@@ -1,0 +1,19 @@
+.text_content {
+    background-color: white;
+    display: flex;
+    padding: 0 5px 5px 5px;
+}
+
+.message_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    //border-bottom: 1px solid rgb(238, 235, 235);
+}
+
+.author_title {
+    color: rgb(46, 45, 45);
+    font-weight: 300;
+    margin-right: 5px;
+}
