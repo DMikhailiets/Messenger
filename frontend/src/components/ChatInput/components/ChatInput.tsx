@@ -9,15 +9,16 @@ const ChatInput: React.FC = (props:any) => {
     return(
         <div className={style.chat_input}>
             <Layout className={style.input}>
-            <Form>
-               <Form.Item style={{marginBottom: 0}}name="note">
-               <Search
-                enterButton={<SendOutlined />}
-                placeholder="input search user"
-                onSearch={value => console.log(value)}
-               />
-               </Form.Item>
-           </Form>
+                <Form>
+                <Form.Item style={{marginBottom: 0}}name="note"> 
+                <Search
+                    
+                    enterButton={<SendOutlined />}
+                    placeholder="input search user"
+                    onSearch={value => console.log(value)}
+                />
+                    </Form.Item>
+            </Form> 
             </Layout>
            
         </div>

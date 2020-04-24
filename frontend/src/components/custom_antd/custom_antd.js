@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Radio, Input, Checkbox } from 'antd'
+import { Button, Radio, Input as ANTDInput, Checkbox } from 'antd'
 
 const { Search } = Input;
 export const AntdButton = (props) => {
@@ -18,10 +18,10 @@ export const AntdCheckbox = ({input, meta, ...props}) => {
     )
 }
 
-export const AntdInput = ({input, meta, ...props}) => {
+export const Input = ({input, meta, ...props}) => {
     return (
         <div>
-            <Input {...input} {...props}/>
+            <ANTDInput {...input} {...props}/>
         </div>
     )
 }

@@ -24,6 +24,21 @@ export const Messages = (props:any) => {
               <SomeMessage/> */}
               <SomeMessage/>
               <AuthorMessage/>
+              <SomeMessage/>
+              <AuthorMessage/>
+              <SomeMessage/>
+              <AuthorMessage/>
+              <SomeMessage/>
+              <AuthorMessage/>
+              <SomeMessage/>
+              <AuthorMessage/>
+              <SomeMessage/>
+              <AuthorMessage/>
+              <SomeMessage/>
+              <AuthorMessage/>
+              <SomeMessage/>
+              <AuthorMessage/>
+              
               
             </Layout>
             <Layout>

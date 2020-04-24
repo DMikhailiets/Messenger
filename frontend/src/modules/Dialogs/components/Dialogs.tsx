@@ -15,7 +15,7 @@ const Dialogs = (props:any) => {
             <div className={style.chat__sidebar_header}>
               <div>
                 <TeamOutlined />
-                <span style={{marginLeft: "5px"}}>Список диалогов</span>
+                <span style={{marginLeft: "5px"}}>Dialogs list</span>
               </div>
               <FormOutlined />
             </div>

@@ -13,7 +13,7 @@ const DialogsPage: React.FC =  (props: any ) => {
           <Col span={8}>
             <Dialogs/>
           </Col>
-          <Col span={16}>
+          <Col style={{backgroundColor: 'white'}}span={16}>
             <Messages/>
           </Col>
         </Row>

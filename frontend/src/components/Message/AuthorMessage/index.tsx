@@ -23,11 +23,7 @@ return(
               <div className={style.author_title}>{"author_name"}</div>
             </div>
             <div className={style.message}> 
-                it's message  it's message  it's message it's message  it's message 
-                it's message  it's message  it's message it's message  it's message 
-                it's message  it's message  it's message it's message  it's message 
-                it's message  it's message  it's message it's message  it's message 
-                it's message  it's message  it's message it's message  it's message 
+                it's message  it's message 
             </div>
         </div>
         <Avatar style={{minWidth: '25px', marginLeft: '5px'}}

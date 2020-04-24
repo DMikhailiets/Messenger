@@ -21,11 +21,7 @@ return(
                 <div className={style.date_title}> 28.07.2012 12:53</div>
             </div>
             <div className={style.message}> 
-                it's message  it's message  it's message it's message  it's message 
-                it's message  it's message  it's message it's message  it's message 
-                it's message  it's message  it's message it's message  it's message 
-                it's message  it's message  it's message it's message  it's message 
-                it's message  it's message  it's message it's message  it's message 
+                it's message  it's message  
             </div>
         </div>
         

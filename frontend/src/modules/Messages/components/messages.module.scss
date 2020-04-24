@@ -2,6 +2,8 @@
     padding: 15px 15px;
     background-color: white;
     min-height: 83vh;
+    max-height: 83vh;
+    overflow: auto;
 }
 
 .chat__sidebar_header {
