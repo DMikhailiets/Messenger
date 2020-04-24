@@ -9,12 +9,13 @@ import {
 import { NavLink, Redirect } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import Dialogs from '../../../modules/Dialogs'
+import { Avatar } from '../../../components'
 
 
 const { Sider } = Layout;
 
 const MainPage = (props:any) => {
-  console.log(props)
+  
   let [ collapsed, setEditMode ] = useState(false);
   let changeEditMode = () => {
       if(collapsed == false){
@@ -32,9 +33,26 @@ const MainPage = (props:any) => {
       return (
       
         <Layout style={{ minHeight: '100vh' }}>
-         <Sider collapsible collapsed={collapsed} onCollapse={changeEditMode}>
+         <Sider width={130} collapsible collapsedWidth={80} collapsed={collapsed} onCollapse={changeEditMode}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+              
+              {
+                collapsed 
+                ? <div className={style.user_side_bar_dropped}key="8"><div className={style.user_side_bar_collapsed}>
+                   <Avatar/>
+                  </div>
+                  </div>
+                : <div className={style.user_side_bar}>
+                    <Avatar/>
+                    <span className={style.avatext} style={{marginLeft: '5px'}}>Denis</span>
+                  </div>
+              }
+              
+                
+                
+              
+              
               <Menu.Item key="1">
                 <NavLink to="/main_page/dialogs">
                 <DesktopOutlined />
