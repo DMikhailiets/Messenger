@@ -13,12 +13,12 @@ const Avatar: React.FC<AvatarProps> = ({isOnline}) => {
             isOnline
             ? <NavLink to='/'>
                 <Badge offset={[0,2]}color='green' dot>
-                  <ANTDAvatar icon={<UserOutlined />} shape="circle" style={{minWidth: '25px', marginLeft: '5px'}}/>
+                  <ANTDAvatar icon={<UserOutlined />} shape="circle" style={{minWidth: '25px'}}/>
                 </Badge>
               </NavLink>
             
             : <NavLink to='/'>
-                <ANTDAvatar icon={<UserOutlined />} style={{minWidth: '25px', marginLeft: '5px'}}/>
+                <ANTDAvatar icon={<UserOutlined />} style={{minWidth: '25px'}}/>
               </NavLink>
         }
         </div>

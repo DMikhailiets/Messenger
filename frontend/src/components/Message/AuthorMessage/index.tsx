@@ -19,8 +19,8 @@ return(
           <div className={style.message_wrapper}>
         <div className={style.message_content}>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-<div className={style.author_title}>{"author_name"}</div>
-<div className={style.date_title}> {"date"}</div>
+              <div className={style.date_title}> {"date"}</div>
+              <div className={style.author_title}>{"author_name"}</div>
             </div>
             <div className={style.message}> 
                 it's message  it's message  it's message it's message  it's message 

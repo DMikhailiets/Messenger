@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import style from './main_page.module.css'
-import { Layout, Menu, Badge } from 'antd';
+import { Layout, Menu, Badge, Row, Col } from 'antd';
 import {
   DesktopOutlined,
   PieChartOutlined,
@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons';
 import { NavLink, Redirect } from 'react-router-dom';
 import { Route } from 'react-router-dom';
-import Dialogs from '../../../modules/Dialogs'
+import DialogsPage from '../../../pages/dialogs_page'
 import { Avatar } from '../../../components'
 
 
@@ -35,29 +35,22 @@ const MainPage = (props:any) => {
         <Layout style={{ minHeight: '100vh' }}>
          <Sider width={130} collapsible collapsedWidth={80} collapsed={collapsed} onCollapse={changeEditMode}>
             <div className="logo" />
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-              
+            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline"> 
               {
                 collapsed 
                 ? <div className={style.user_side_bar_dropped}key="8"><div className={style.user_side_bar_collapsed}>
                    <Avatar/>
                   </div>
                   </div>
-                : <div className={style.user_side_bar}>
+                : <div style={{marginLeft: '5px'}} className={style.user_side_bar}>
                     <Avatar/>
                     <span className={style.avatext} style={{marginLeft: '5px'}}>Denis</span>
                   </div>
               }
-              
-                
-                
-              
-              
               <Menu.Item key="1">
                 <NavLink to="/main_page/dialogs">
-                <DesktopOutlined />
-                <span>Dialogs</span>
-               
+                  <DesktopOutlined />
+                  <span>Dialogs</span>
                 </NavLink>
               </Menu.Item>
               <Menu.Item key="2">
@@ -75,7 +68,16 @@ const MainPage = (props:any) => {
             </Menu>
           </Sider>
           <Layout className="site-layout">
-            <Route path="/main_page/dialogs" render = { () => <Dialogs/>}/>
+          {/* <Row>
+            <Col span={4}/>
+            <Col span={16}>
+            <Route path="/main_page/dialogs" render = { () => <DialogsPage/>}/>
+            <Route path="/main_page/logistics" render = { () => <div>Hi</div>}/>
+            <Route path="/main_page/orders" render = { () => <div>Hi</div>}/>
+            </Col>
+            <Col span={4}/>
+          </Row> */}
+          <Route path="/main_page/dialogs" render = { () => <DialogsPage/>}/>
             <Route path="/main_page/logistics" render = { () => <div>Hi</div>}/>
             <Route path="/main_page/orders" render = { () => <div>Hi</div>}/>
           </Layout>
