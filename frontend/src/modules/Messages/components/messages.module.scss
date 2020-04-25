@@ -12,7 +12,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid rgb(226, 226, 226);
+    border-bottom: 1px solid rgb(242, 242, 242);
+    font-weight: 550;
 }
 
 .header_wrapper {
@@ -21,6 +22,3 @@
     background-color: white;
 }
 
-.message_title {
-    font-weight: 550;
-}

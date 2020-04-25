@@ -2,12 +2,22 @@ import React from 'react'
 import style from './dialogs.module.scss'
 import Icon, { FormOutlined, TeamOutlined } from '@ant-design/icons';
 import { DialogItem } from '../../../components';
-import { Layout, PageHeader, Button, Input } from 'antd';
+import { Layout, PageHeader, Button, Input, Empty } from 'antd';
 import Header from '../../Header';
 
 const { Search } = Input;
 
-const Dialogs = (props:any) => {
+type DialogsProps = {
+  items: any,
+  userId: any,
+  onSearch: any,
+  inputValue: any,
+}
+
+const Dialogs: React.FC<DialogsProps> = ({ items, userId, onSearch, inputValue }) => {
+  
+
+   let dialogsArray = items.map( (dialog: any) => <DialogItem key={dialog._id} {...dialog}/>)
     return (
         <div>
           <Layout className={style.dialogs_wrapper}>
@@ -22,23 +32,30 @@ const Dialogs = (props:any) => {
           <div>
          <Search
             placeholder="input search user"
-            onSearch={value => console.log(value)}
+            onChange={e => onSearch(e.target.value)}
+            value={inputValue}
             style={{marginTop: "20px"}}
             
          />
          </div>
         </div >
-        <div style={{marginTop: "15px"}}>
-            <DialogItem/>
-            <DialogItem/>
-            <DialogItem/>
-            <DialogItem/>
-            <DialogItem/>
-            <DialogItem/>
-        </div>
+        
+        {
+          true
+          ? <div className={style.dialogs_items} style={{marginTop: "15px"}}>
+              {dialogsArray}
+              
+            </div>
+          : <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh'}}>
+            <Empty description=''image={Empty.PRESENTED_IMAGE_SIMPLE}/>
+          </div>
+
+        }
+        
           </Layout>
         </div>
     )
 }
 
 export default Dialogs
+
