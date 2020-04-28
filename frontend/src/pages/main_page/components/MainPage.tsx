@@ -39,11 +39,11 @@ const MainPage = (props:any) => {
               {
                 collapsed 
                 ? <div className={style.user_side_bar_dropped}key="8"><div className={style.user_side_bar_collapsed}>
-                   <Avatar/>
+                   <Avatar name='Denis'/>
                   </div>
                   </div>
                 : <div style={{marginLeft: '5px'}} className={style.user_side_bar}>
-                    <Avatar/>
+                    <Avatar name='Denis'/>
                     <span className={style.avatext} style={{marginLeft: '5px'}}>Denis</span>
                   </div>
               }
@@ -77,7 +77,7 @@ const MainPage = (props:any) => {
             </Col>
             <Col span={4}/>
           </Row> */}
-          <Route path="/main_page/dialogs" render = { () => <DialogsPage/>}/>
+          <Route path="/main_page/dialogs/" render = { () => <DialogsPage/>}/>
             <Route path="/main_page/logistics" render = { () => <div>Hi</div>}/>
             <Route path="/main_page/orders" render = { () => <div>Hi</div>}/>
           </Layout>

@@ -8,6 +8,7 @@ import format from "date-fns/format";
 import { isToday } from 'date-fns';
 
  type DialogProps = {
+  setCurrentDialogId:any
     _id: string,
     text: string,
     created_at: string,
@@ -27,34 +28,32 @@ const getMessageTime = (created_at: string ) => {
     }
   };
 
+const Dialogs: React.FC<DialogProps> = ({text, setCurrentDialogId, created_at, _id, user}) => {
 
-const Dialogs: React.FC<DialogProps> = ({text, created_at, _id, user}) => {
-    console.log(text.length)
-    console.log(text)
-
-    return (
-        <div>
-            <Row>
+   let setId = () => {
+    setCurrentDialogId(_id)
+   }
+    return ( 
+        <Layout onClick={setId} className={style.dialog_wrapper}>
+          <div className={style.message_wrapper}>
+              <Avatar name={user.fullname} avatar={user.avatar} isOnline/>
+              
+                <div className={style.text_content}>
+                <div className={style.header_data}>
+                    <div className={style.author_title}>{user.fullname}</div>
+                    <div className={style.date_title}>{getMessageTime(created_at)}</div>
+                </div>
+                <div className={style.message}> 
+                  {(text.length > 40)
+                  ? (text.slice(0, 40) + ' ...')
+                  : (text)
+                }  
+                </div>
+              </div>
+              
+          </div>
+      </Layout>
      
-      <Col span={24}>
-        <div className={style.message_wrapper}>
-            <Avatar isOnline/>
-            <Layout className={style.text_content}>
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                <div className={style.author_title}>{user.fullname}</div>
-                <div className={style.date_title}>{getMessageTime(created_at)}</div>
-            </div>
-            <div className={style.message}> 
-                {(text.length > 40)
-                ? (text.slice(0, 40) + ' ...')
-                : (text)
-            }  
-            </div>
-            </Layout>
-        </div>
-        </Col>
-        </Row>
-        </div>
     )
 }
 

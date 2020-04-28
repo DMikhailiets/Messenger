@@ -6,20 +6,37 @@ import classNames from "classnames";
 import AuthorMessage from './AuthorMessage'
 import SomeMessage from './SomeMessage'
 
-// type MessageProps = {
-//     author: boolean,
-//     author_name: string,
-//     date: string,
-//     message: string,
-
-// }
-
-const  Message: React.FC = ( props) => {
+type MessageProps = {
+    _id: string,
+    text: string,
+    created_at: string,
+    user: {
+      _id: string,
+      fullname: string,
+      avatar: null | any,
+     }
+}
+ 
+const  Message: React.FC<MessageProps> = ( props) => {
 return(
     <div>
         
-             <AuthorMessage {...props} />
-             <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        <SomeMessage/>
+        
         
     </div>
 )

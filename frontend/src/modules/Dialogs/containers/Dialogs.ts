@@ -1,3 +1,12 @@
-import Dialogs from '../components/Dialogs'
+import { setCurrentDialogId } from './../../../redux/reducers/messagesReducer';
+import { default as Dialogs} from './DialogsSearch'
+import { connect } from 'react-redux'
+import store from '../../../redux/store'
+import { getDialogs } from '../../../redux/reducers/dialogsReducer'
+import { fetchDialogs } from '../../../redux/selectors'
 
-export default Dialogs
+let mapStateToProps = (state:any) => ({
+    dialogs_items: fetchDialogs(state)
+})
+
+export default connect(mapStateToProps, {getDialogs, setCurrentDialogId})(Dialogs)

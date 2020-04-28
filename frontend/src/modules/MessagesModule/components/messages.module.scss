@@ -3,9 +3,12 @@
     background-color: white;
     min-height: 83vh;
     max-height: 83vh;
+    //overflow: auto;
+    //scroll-padding-top: 1000px;
+}
+.dialogs_items {
     overflow: auto;
 }
-
 .chat__sidebar_header {
     padding-bottom: 10px 0;
     padding-bottom: 10px;
@@ -14,6 +17,7 @@
     align-items: center;
     border-bottom: 1px solid rgb(242, 242, 242);
     font-weight: 550;
+    
 }
 
 .header_wrapper {

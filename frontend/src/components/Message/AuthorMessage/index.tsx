@@ -4,14 +4,18 @@ import { Comment, Tooltip, Avatar, Layout, Row, Col } from 'antd';
 import moment from 'moment';
 import classNames from "classnames";
 
-// type MessageProps = {
-//     author_name: string,
-//     date: string,
-//     message: string,
+type MessageProps = {
+    _id: string,
+    text: string,
+    created_at: string,
+    user: {
+      _id: string,
+      fullname: string,
+      avatar: null | any,
+     }
+}
 
-// }
-
-const AuthorMessage: React.FC = (props) => {
+const AuthorMessage: React.FC<MessageProps> = (props) => {
 return(
     <div>
         <Row>
