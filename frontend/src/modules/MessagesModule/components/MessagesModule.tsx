@@ -35,7 +35,7 @@ const messagesRef: any = React.createRef()
                   </span>
                 </Col>
                 <Col span={1}>
-                <EllipsisOutlined style={{fontSize: '15px'}}/>
+                <EllipsisOutlined rotate={90} style={{fontSize: '15px'}}/>
                 </Col>
               </Row>
                
