@@ -31,8 +31,10 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false
     },
-    lastSeen: Date,
-    last_seen: Date,
+    last_seen: {
+        type: Date,
+        default: new Date()
+    }
 
 }, {
     timestamps: true
