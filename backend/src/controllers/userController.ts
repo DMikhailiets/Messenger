@@ -1,5 +1,6 @@
 import express from 'express'
 import { UserModel } from '../models'
+import { createJWTToken, } from '../utils';
 
 class UserController {
     show (req: express.Request, res: express.Response){
@@ -21,9 +22,39 @@ class UserController {
         })
     }
 
-    getMe (){
+    login(req: express.Request, res: express.Response) {
+        const postData = {
+          email: req.body.email,
+          password: req.body.password,
+        };
+    
+        // const errors = validationResult(req)
+        // if (!errors.isEmpty()) {
+        //   return res.status(422).json({ errors: errors.array() })
+        // }
+    
+        UserModel.findOne({ email: postData.email }, (err, user: any) => {
+          if (err) {
+            return res.status(404).json({
+              message: 'User not found',
+            });
+          }
+    
+        //   if (bcrypt.compareSync(postData.password, user.password)) {
+        //     const token = createJWToken(user)
+        //     res.json({
+        //       status: 'success',
+        //       token,
+        //     });
+        //   } else {
+        //     res.json({
+        //       status: 'error',
+        //       message: 'Incorrect password or email',
+        //     });
+        //   }
+        });
+      }
 
-    }
     create(req: express.Request, res: express.Response){
         const postData = {
             email: req.body.email,

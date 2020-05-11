@@ -3,6 +3,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { updateLastSeen   } from './middleware'
 import  { UserController, DialogController, MessageController } from './controllers'
+import dotenv from 'dotenv'
 
 mongoose.connect('mongodb://localhost:27017/chat', {
   useNewUrlParser: true,
@@ -11,6 +12,8 @@ mongoose.connect('mongodb://localhost:27017/chat', {
 });
 
 const app = express();
+
+dotenv.config()
 
 const User = new UserController()
 const Dialog = new DialogController()
@@ -23,6 +26,7 @@ app.use(updateLastSeen);
 app.get('/user/:id', User.show)
 app.delete('/user/:id', User.delete)
 app.post('/user/registration', User.create)
+app.post('/user/login', User.login);
 
 app.get('/dialogs', Dialog.index)
 app.post('/dialogs', Dialog.create)
@@ -36,6 +40,6 @@ app.delete('/messages/:id', Messages.delete)
   
 // });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+app.listen(process.env.PORT, function () {
+  console.log(`Server listening on ${process.env.PORT} port!`)
 });
