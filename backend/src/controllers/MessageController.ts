@@ -1,8 +1,12 @@
 import express from 'express'
 import { MessageModel } from '../models'
+import socket from "socket.io"
 
 class MessageController {
-    
+  io: socket.Server
+  constructor(io: socket.Server) {
+    this.io = io
+  }
     index (req: express.Request, res: express.Response){
         
         const dialogId: any = req.query.dialog
