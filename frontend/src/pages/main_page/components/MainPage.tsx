@@ -16,7 +16,7 @@ const { Sider } = Layout;
 
 const MainPage = (props:any) => {
   
-  let [ collapsed, setEditMode ] = useState(false);
+  let [ collapsed, setEditMode ] = useState(true);
   let changeEditMode = () => {
       if(collapsed == false){
           setEditMode(true);
@@ -33,7 +33,7 @@ const MainPage = (props:any) => {
       return (
       
         <Layout style={{ minHeight: '100vh' }}>
-         <Sider width={130} collapsible collapsedWidth={80} collapsed={collapsed} onCollapse={changeEditMode}>
+         <Sider width={130}  collapsedWidth={80} collapsed={collapsed} onCollapse={changeEditMode} onMouseEnter={() => (setEditMode(false))} onMouseLeave={() => (setEditMode(true))}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline"> 
               {

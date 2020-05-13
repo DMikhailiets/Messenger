@@ -1,5 +1,7 @@
 import { LoginForm as LoginFormComponent } from '../components/LoginForm'
 import { withFormik } from 'formik';
+import axios from '../../../core/axios'
+
 
 export default withFormik({
     enableReinitialize: true,
@@ -8,10 +10,8 @@ export default withFormik({
       password: "",
     }),
     handleSubmit: (values, { setSubmitting }) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-      }, 1000);
+      return axios.post('user/login', values)
+        .then(({data}) => {console.log(data)})
     },
     displayName: "RegisterForm"
   })(LoginFormComponent);
