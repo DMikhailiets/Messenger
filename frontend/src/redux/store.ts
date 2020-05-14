@@ -1,15 +1,19 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { dialogsReducer, messagesReducer } from './reducers'
+import { dialogsReducer, userReducer, messagesReducer } from './reducers'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     dialogs: dialogsReducer,
     messages: messagesReducer,
+    userData: userReducer
 })
 
-const store = createStore(reducers, composeWithDevTools(
+type RootReducer = typeof rootReducer
+export type AppState = ReturnType<RootReducer>
+
+const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(thunkMiddleware)
   ));
 

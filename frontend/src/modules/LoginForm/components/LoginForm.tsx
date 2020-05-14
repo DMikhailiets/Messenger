@@ -1,22 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Row, Col, Layout, Input, Form, Button } from 'antd'
 import { Block } from '../../../components'
 import style from './login_form.module.css'
-import { NavLink } from 'react-router-dom'
-import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
+import { NavLink, Redirect } from 'react-router-dom'
+import { UserOutlined, MailOutlined, LockOutlined, CheckCircleTwoTone } from '@ant-design/icons';
+import notification from '../../../components/Notification'
 
-export const LoginForm = (props:any) => {
-  const {
-    values,
-    touched,
-    errors,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    isValid,
-    isSubmitting
-  } = props;
-  console.log(props)
+export const LoginFormContainer = (props:any) => {
+  const[disabled, setButtonType] = useState(false)
+  const[isValidate, setIsValidate] = useState(false)
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo)
+  }
+  if(props.userData.token){//localStorage.token
+    return <Redirect to='/main_page/dialogs'/>
+  }
     return(
         <div>
             <Layout>
@@ -27,17 +25,46 @@ export const LoginForm = (props:any) => {
                   <div>
                     <h2>Join your account</h2>
                   </div>
-                  <Form onFinish={handleSubmit}>
+                  <Form 
+                    onFinish={(userData) => {
+                      setButtonType(true)
+                      props.authUser(userData).then((data: any) => {
+                        
+                      if(data == "Error"){
+                        setButtonType(false)
+                        notification({
+                          text: "Incorrect email or password!",
+                          type: 'error',
+                          title: "Oops..."
+                        })
+                        console.log('error')
+                      }else{
+                        props.getMe()
+                        console.log('ok')
+                        setIsValidate(true)
+                        notification({
+                          text: "nice to meet you!)",
+                          type: 'success',
+                          title: "Success!",
+                          duration: 5
+                        })
+                      }
+                    } )}
+                  }
+                    onFinishFailed={onFinishFailed}>
                   <Form.Item
-                      
-                      name="login" 
-                      rules={[{ required: true, message: 'Email is required!'}]}>
+                      validateStatus={isValidate ? 'success' : ''}
+                      name="email" 
+                      rules={[{ required: true, 
+                                message: 'Email is required!',
+                                
+                      }]}>
                       
                       <Input 
-                        prefix={<MailOutlined className="site-form-item-icon" />}
-                        style={{marginTop: '15px'}} 
+                        prefix={<MailOutlined style={{color: 'grey'}} className="site-form-item-icon" />}
+                        style={{marginTop: '15px', backgroundColor: 'white'}} 
                         placeholder=' email'
-                        onChange={handleChange} 
+                        
                       />
                       </Form.Item>
                       <Form.Item
@@ -50,10 +77,14 @@ export const LoginForm = (props:any) => {
                         },
                       ]}
                       >
-                         <Input.Password onChange={handleChange} prefix={<LockOutlined className="site-form-item-icon" />} placeholder='password'/>
+                         <Input.Password  prefix={<LockOutlined style={{color: 'grey'}} className="site-form-item-icon" />} placeholder='password'/>
                       </Form.Item>
-                      <Form.Item>
-                        <Button htmlType="submit" style={{ width: '100%'}} type='primary' size='large'>Login</Button>
+                      <Form.Item>{
+                        isValidate
+                        ? <Button style={{ width: '100%'}} size='large'><CheckCircleTwoTone twoToneColor="#52c41a" />Success!</Button>
+                        : <Button disabled={disabled} loading={disabled}htmlType="submit" style={{ width: '100%'}} type='primary' size='large'>Login</Button>
+                        }
+                        
                       </Form.Item>
                   </Form>
                   <NavLink to='/registration' style={{ }}>register now</NavLink>
@@ -66,3 +97,4 @@ export const LoginForm = (props:any) => {
     )
 }
 
+export default LoginFormContainer
