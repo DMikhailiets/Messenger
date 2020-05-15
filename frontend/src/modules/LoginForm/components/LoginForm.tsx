@@ -57,9 +57,7 @@ export const LoginFormContainer = (props:any) => {
                       name="email" 
                       rules={[{ required: true, 
                                 message: 'Email is required!',
-                                
-                      }]}>
-                      
+                      }]}>                      
                       <Input 
                         prefix={<MailOutlined style={{color: 'grey'}} className="site-form-item-icon" />}
                         style={{marginTop: '15px', backgroundColor: 'white'}} 
@@ -68,13 +66,12 @@ export const LoginFormContainer = (props:any) => {
                       />
                       </Form.Item>
                       <Form.Item
-                      
-                      name="password"
-                      rules={[
-                        {
-                          required: true,
-                          message: 'Please input your password!',
-                        },
+                        name="password"
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please input your password!',
+                          },
                       ]}
                       >
                          <Input.Password  prefix={<LockOutlined style={{color: 'grey'}} className="site-form-item-icon" />} placeholder='password'/>

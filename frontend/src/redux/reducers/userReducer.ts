@@ -30,7 +30,7 @@ const setUserToken = (token: string) => ({type: 'SET_USER_TOKEN', token})
 export const getMe = () => async (dispatch: redux.Dispatch) => {
     let response: any = await userAPI.getMe()
     if (response.status == 200){
-        dispatch(setUserData(response.data))
+        dispatch(setUserData(response))
     } else {
         return Error()
     }

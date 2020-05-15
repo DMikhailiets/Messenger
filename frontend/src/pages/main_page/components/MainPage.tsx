@@ -14,6 +14,8 @@ import { Avatar } from '../../../components'
 
 const { Sider } = Layout;
 
+
+
 const MainPage = (props:any) => {
   
   let [ collapsed, setEditMode ] = useState(true);
