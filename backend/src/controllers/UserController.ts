@@ -34,6 +34,7 @@ class UserController {
   };
 
   getMe = (req: any, res: express.Response) => {
+    console.log(req)
     const id: string = req.user._id;
     UserModel.findById(id, (err, user) => {
       if (err) {
@@ -80,6 +81,7 @@ class UserController {
   };
 
   login = (req: express.Request, res: express.Response) => {
+    console.log(req.body)
     const postData = {
       email: req.body.email,
       password: req.body.password
@@ -104,8 +106,7 @@ class UserController {
           token
         });
       } else {
-        res.json({
-          status: "error",
+        res.status(403).json({
           message: "Incorrect password or email"
         });
       }
