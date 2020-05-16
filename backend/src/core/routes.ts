@@ -2,7 +2,7 @@ import bodyParser from "body-parser"
 import express from "express"
 import socket from "socket.io"
 import { updateLastSeen, checkAuth } from "../middleware"
-import { loginValidation } from "../utils/validations"
+import { loginValidation, registerValidation } from "../utils/validations"
 import cors from 'cors'
 import { UserCtrl, DialogCtrl, MessageCtrl } from "../controllers"
 
@@ -26,7 +26,7 @@ const createRoutes = (app: express.Express, io: socket.Server) => {
   app.get('/user/:id', cors(corsOptions), UserController.show)
   app.get('/users/me', cors(corsOptions), UserController.getMe)
   app.delete('/user/:id', cors(corsOptions), UserController.delete)
-  app.post('/user/registration', cors(corsOptions), UserController.create)
+  app.post('/user/registration', cors(corsOptions), registerValidation, UserController.create)
   app.post('/user/login', cors(corsOptions), loginValidation, UserController.login)
 
 app.get('/dialogs', cors(corsOptions), DialogController.index)
