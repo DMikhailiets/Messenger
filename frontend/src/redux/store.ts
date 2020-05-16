@@ -1,13 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { dialogsReducer, userReducer, messagesReducer } from './reducers'
+import { dialogsReducer, userReducer, messagesReducer, registrationReducer } from './reducers'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 
 let rootReducer = combineReducers({
     dialogs: dialogsReducer,
     messages: messagesReducer,
-    userData: userReducer
+    userData: userReducer,
+    registrationData: registrationReducer
 })
 
 type RootReducer = typeof rootReducer

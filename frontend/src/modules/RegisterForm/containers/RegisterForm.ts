@@ -1,25 +1,11 @@
 import { RegisterForm as RegisterFormComponent } from '../components/RegisterForm'
-import {  withFormik } from 'formik';
+import { connect } from 'react-redux';
+import { AppState } from '../../../redux/store';
+import { registrationUser } from '../../../redux/reducers/registerReducer'
 
-export default withFormik({
-    enableReinitialize: true,
-    mapPropsToValues: () => ({
-      email: "",
-      fullname: "",
-      password: "",
-    }),
-    validate: values => {
-      let errors = {};
-     
-      return errors;
-    },
-    handleSubmit: (values, { setSubmitting }) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-      }, 1000);
-    },
-    displayName: "RegisterForm"
-  })(RegisterFormComponent);
+const MapStateToProps = (state: AppState) => {
+
+}
+export default connect (MapStateToProps, {registrationUser}) (RegisterFormComponent);
 
 
