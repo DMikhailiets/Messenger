@@ -1,29 +1,28 @@
 import React from 'react'
 import { Row, Col, Layout } from 'antd'
 import { ExclamationCircleTwoTone } from '@ant-design/icons' 
-import { Block, Button } from '../../components'
-import style from './register_form.module.css'
-import { NavLink } from 'react-router-dom'
+import style from '../RegisterForm/components/register_form.module.css'
+import { NavLink, Redirect } from 'react-router-dom'
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
+
+
+import { Result, Button } from 'antd';
+
 
 export const EmailConfirm = (props:any) => {
     return(
-        <div>
-            <Layout>
-            <Row>
-              <Col span={8}/>
-              <Col className={style.login_form_wrapper}span={8}> 
-                <Block className={style.block}>
-                  <div>
-                    <h2>Confirm your email</h2>
-                  </div>
-                  <ExclamationCircleTwoTone style={{fontSize: '50px'}}/>
-                </Block>
-              </Col>
-              <Col span={8}/>
-            </Row>
-            </Layout>
-        </div>
+      <div  style={{minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <Result
+     
+      status="success"
+      title="Registration was successful! Check your email to confirm your account!"
+      extra={[
+        <NavLink to='/'>
+          <Button type="primary" key="console">  Authorization page </Button>
+        </NavLink>
+      ]}
+    />
+    </div>
     )
 }
 

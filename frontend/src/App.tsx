@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       
-      <Route exact path={["/", "/registration"]} render = { () => <Auth/>}/>
+      <Route exact path={["/", "/registration", "/registration/confirm"]} render = { () => <Auth/>}/>
       <Route path="/main_page" render = { () => <MainPage/>}/>
     
     </div>

@@ -3,6 +3,7 @@ import { Row, Col, Layout, Input, Form, Button } from 'antd'
 import { Block } from '../../../components'
 import style from './register_form.module.css'
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
+import { Redirect, NavLink } from 'react-router-dom';
 
 type RegisterFormProps = {
   registrationUser: Function
@@ -23,7 +24,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({registrationUser}) =>
                     <h2>Join Us</h2>
                   </div>
                  
-                  <Form onFinish={(value) => {registrationUser(value)}}>
+                  <Form onFinish={(value) => {registrationUser(value).then(() => {
+                    return <Redirect to='/registration/confirm'/>
+                  })}}>
                     <Form.Item
                       // dependencies={['email']}
                       style={{display: "flex", alignItems: 'center'}}
@@ -47,10 +50,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({registrationUser}) =>
                       hasFeedback>
                       
                       <Input 
-                       
                         prefix={<MailOutlined className="site-form-item-icon" />}
                         
-                        placeholder=' email'
+                        placeholder='email'
                        
                       />
                     </Form.Item>
@@ -153,6 +155,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({registrationUser}) =>
                         <Button htmlType="submit" style={{marginTop: '15px', width: '100%'}} type='primary' size='large'> Register now </Button>
                       </Form.Item>
                   </Form>
+                  <NavLink to='/'>on authotisation page</NavLink>
                 </Block>
               </Col>
               <Col span={8}/>
