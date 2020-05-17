@@ -10,6 +10,12 @@ const app = express();
 const http = createServer(app);
 const io = createSocket(http);
 
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
+
+io.origins('*:*')
+
 dotenv.config();
 
 createRoutes(app, io);

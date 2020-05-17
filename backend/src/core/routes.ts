@@ -18,24 +18,27 @@ const createRoutes = (app: express.Express, io: socket.Server) => {
 
   app.use(cors())
   app.use(bodyParser.json())
-  app.use(updateLastSeen)
   app.use(checkAuth)
+  app.use(updateLastSeen)
   
   // app.use(bodyParser.urlencoded({ extended: false })) for multipart-form data
   
   app.get('/user/:id', cors(corsOptions), UserController.show)
   app.get('/users/me', cors(corsOptions), UserController.getMe)
   app.delete('/user/:id', cors(corsOptions), UserController.delete)
-  app.post('/user/registration', cors(corsOptions), registerValidation, UserController.create)
   app.post('/user/login', cors(corsOptions), loginValidation, UserController.login)
+  app.post('/user/registration', cors(corsOptions), registerValidation, UserController.create)
+  
 
-app.get('/dialogs', cors(corsOptions), DialogController.index)
-app.post('/dialogs', cors(corsOptions), DialogController.create)
-app.delete('/dialogs/:id', cors(corsOptions), DialogController.delete)
+  app.get('/dialogs', cors(corsOptions), DialogController.index)
+  app.post('/dialogs', cors(corsOptions), DialogController.create)
+  app.delete('/dialogs/:id', cors(corsOptions), DialogController.delete)
 
-app.get('/messages', cors(corsOptions), MessagesController.index)
-app.post('/messages', cors(corsOptions), MessagesController.create)
-app.delete('/messages/:id', cors(corsOptions), MessagesController.delete)
+  app.get('/messages', cors(corsOptions), MessagesController.index)
+  app.post('/messages', cors(corsOptions), MessagesController.create)
+  app.delete('/messages/:id', cors(corsOptions), MessagesController.delete)
+
+  app.get('/verify', cors(corsOptions), UserController.verify)
 
 }
 

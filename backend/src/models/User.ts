@@ -1,6 +1,8 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { isEmail } from 'validator';
 import { generatePasswordHash } from '../utils';
+import { isToday } from 'date-fns';
+import differenceInMinutes from "date-fns/differenceInMinutes";
 
 export interface IUser extends Document {
   email?: string;
@@ -12,37 +14,46 @@ export interface IUser extends Document {
   last_seen?: Date;
 }
 
+
 const UserSchema = new Schema(
   {
     email: {
       type: String,
-      require: 'Email address is required',
-      validate: [isEmail, 'Invalid email'],
-      unique: true,
+      require: "Email address is required",
+      validate: [isEmail, "Invalid email"],
+      unique: true
     },
     fullname: {
       type: String,
-      required: 'Fullname is required',
+      required: "Fullname is required"
     },
     password: {
       type: String,
-      required: 'Password is required',
+      required: "Password is required"
     },
     confirmed: {
       type: Boolean,
-      default: false,
+      default: false
     },
     avatar: String,
     confirm_hash: String,
     last_seen: {
       type: Date,
-      default: new Date(),
-    },
+      default: new Date()
+    }
   },
   {
-    timestamps: true,
-  },
+    timestamps: true
+  }
 );
+UserSchema.virtual("isOnline").get(function(this: any) {
+ // const date: any = new Date().toISOString()
+  return differenceInMinutes(new Date, this.last_seen) < 5;
+});
+
+UserSchema.set("toJSON", {
+  virtuals: true
+});
 
 UserSchema.set('toJSON', {
   virtuals: true,
