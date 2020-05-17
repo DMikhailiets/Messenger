@@ -33,7 +33,7 @@ const Dialogs: React.FC<DialogsProps> = ({ setCurrentDialogId, dialogs_items, ge
   
       if(!dialogs_items.length){
         getDialogs()
-        socket.on("SERVER:DIALOG_CREATED", onNewDialog);
+        socket.on("SERVER:DIALOG_CREATED", onNewDialog)
         //return () => socket.removeListener("SERVER:DIALOG_CREATED", onNewDialog);
       } else {
         setFiltredItems(dialogs_items)

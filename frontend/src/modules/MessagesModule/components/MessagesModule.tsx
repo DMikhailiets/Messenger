@@ -26,6 +26,7 @@ const messagesRef: any = React.createRef()
       messagesRef.current.scrollTo(0,9999999)
     }
   },[messages])
+  console.log(location.pathname.slice(19) )
     return(
         <div >
             <Layout className={style.header_wrapper}>
@@ -48,7 +49,7 @@ const messagesRef: any = React.createRef()
             </Layout>
             <Layout  className={style.messages_wrapper}>
             { 
-             (location.pathname.slice(19) !== '')
+             (location.pathname.slice(19).length !== 0)
               ? //<Route  path={props.location.pathname} render = { () => 
               <div  ref={messagesRef} className={style.dialogs_items} style={{marginTop: "15px"}}>
                   <Messages messagesItems={messages} getMessages={getMessages} dialogId={location.pathname.slice(19)}/>

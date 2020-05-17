@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Message } from '../../components'
- 
+import socket from '../../core/socket'
+
 type MessagesProps = {
     dialogId: string,
     getMessages: any,
@@ -12,9 +13,12 @@ type MessagesProps = {
 
 const Messages:React.FC<MessagesProps> = ({dialogId, getMessages, messagesItems}) => {     
     console.log(dialogId)
-  useEffect(()=>{
+  useEffect(() => {
     getMessages(dialogId)
   },[dialogId])
+
+  socket.on("SERVER:NEW_MESSAGE", () => getMessages(dialogId));
+
   let messagesArray = messagesItems.map( (message: any) => <Message key={message._id} {...message}/>)
 
     return(
