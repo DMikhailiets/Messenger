@@ -32,8 +32,8 @@ let messagesReducer = (state = initialState, action:any) => {
     }
 }
 
-export let getMessages = () => async (dispatch: any) =>{
-    let response = await dialogsAPI.getMessages()
+export let getMessages = (dialogId: string) => async (dispatch: any) =>{
+    let response = await dialogsAPI.getMessages(dialogId)
     dispatch(setMessages(response))
 }
 

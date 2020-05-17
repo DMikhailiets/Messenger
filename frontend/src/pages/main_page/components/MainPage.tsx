@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './main_page.module.css'
 import { Layout, Menu, Badge, Row, Col } from 'antd';
 import {
@@ -17,7 +17,10 @@ const { Sider } = Layout;
 
 
 const MainPage = (props:any) => {
-  
+  console.log(props)
+  useEffect(() => {
+    props.getMe()
+  },[])
   let [ collapsed, setEditMode ] = useState(true);
   let changeEditMode = () => {
       if(collapsed == false){
@@ -45,7 +48,7 @@ const MainPage = (props:any) => {
                   </div>
                   </div>
                 : <div style={{marginLeft: '5px'}} className={style.user_side_bar}>
-                    <Avatar name='Denis'/>
+                    <Avatar  name='Denis'/>
                     <span className={style.avatext} style={{marginLeft: '5px'}}>Denis</span>
                   </div>
               }

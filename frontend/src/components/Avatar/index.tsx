@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import { Badge, Avatar as ANTDAvatar }from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import getColor from './getColor';
 import style from './avatar.module.scss'
+import { getMe } from '../../redux/reducers/userReducer';
 
 type AvatarProps = {
     isOnline?: boolean,
@@ -16,11 +17,10 @@ const ColorList = [
                   'red', 'yellow', 'orange', 'cyan', 'green', 
                   'blue', 'purple', 'geekblue', 'magenta', 'volcano',
                   'gold', 'lime',
-];
-
-
+]
 
 const Avatar: React.FC<AvatarProps> = ({isOnline, avatar, name }) => {
+  
     return (
         <div>
             {
@@ -35,9 +35,9 @@ const Avatar: React.FC<AvatarProps> = ({isOnline, avatar, name }) => {
                           shape="circle"
                         >
                           {
-                            <h1 className={style.avatar_letter} style={{ backgroundColor: ColorList[getColor(name)] +" "+"!important"}}>
+                            <div className={style.avatar_letter} style={{ backgroundColor: ColorList[getColor(name)]}}>
                               {  name?.slice(0,1).toUpperCase()}
-                            </h1>
+                            </div>
                            
                           }
                         </ANTDAvatar>
@@ -47,7 +47,21 @@ const Avatar: React.FC<AvatarProps> = ({isOnline, avatar, name }) => {
               </NavLink>
             
             : <NavLink to='/'>
-                <ANTDAvatar icon={<UserOutlined />} style={{minWidth: '25px'}}/>
+                {
+                     avatar
+                     ? <ANTDAvatar icon={<UserOutlined />} shape="circle" style={{minWidth: '25px'}}/>
+                     : <ANTDAvatar 
+                          style={{ backgroundColor: ColorList[getColor(name)], verticalAlign: 'middle', minWidth: '25px' }}  
+                          shape="circle"
+                        >
+                          {
+                            <div className={style.avatar_letter} style={{ backgroundColor: ColorList[getColor(name)] }}>
+                              {  name?.slice(0,1).toUpperCase()}
+                            </div>
+                           
+                          }
+                        </ANTDAvatar>
+                  }
               </NavLink>
         }
         </div>

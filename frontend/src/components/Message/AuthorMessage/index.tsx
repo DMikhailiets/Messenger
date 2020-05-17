@@ -1,13 +1,14 @@
 import React from 'react';
 import style from './author_message.module.scss';
-import { Comment, Tooltip, Avatar, Layout, Row, Col } from 'antd';
+import { Comment, Tooltip, Layout, Row, Col } from 'antd';
 import moment from 'moment';
 import classNames from "classnames";
+import Avatar from '../../Avatar';
 
 type MessageProps = {
     _id: string,
     text: string,
-    created_at: string,
+    createdAt: string,
     user: {
       _id: string,
       fullname: string,
@@ -15,7 +16,7 @@ type MessageProps = {
      }
 }
 
-const AuthorMessage: React.FC<MessageProps> = (props) => {
+const AuthorMessage: React.FC<MessageProps> = ({_id,text, createdAt, user }) => {
 return(
     <div>
         <Row>
@@ -23,16 +24,16 @@ return(
           <div className={style.message_wrapper}>
         <div className={style.message_content}>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-              <div className={style.date_title}> {"date"}</div>
-              <div className={style.author_title}>{"author_name"}</div>
+              <div className={style.date_title}> {createdAt}</div>
+              <div className={style.author_title}>{user.fullname}</div>
             </div>
             <div className={style.message}> 
-                it's message  it's message 
+               {text}
             </div>
         </div>
-        <Avatar style={{minWidth: '25px', marginLeft: '5px'}}
-          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-          alt="Han Solo"
+        <Avatar
+          avatar={user.avatar}
+          name={user.fullname}
         />
     </div> 
           </Col>

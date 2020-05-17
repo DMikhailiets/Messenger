@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { Auth, MainPage } from './pages';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-
+import './core/socket'
 
 function App() {
   return (

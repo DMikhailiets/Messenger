@@ -11,12 +11,11 @@ type DialogsProps = {
   userId?: any,
   onSearch: any,
   inputValue: any,
-  setCurrentDialogId: any
+ 
 }
 
-const Dialogs: React.FC<DialogsProps> = ({ setCurrentDialogId, items, userId, onSearch, inputValue }) => {
-   console.log(items)
-   let dialogsArray = items.map( (dialog: any) => <DialogItem setCurrentDialogId={setCurrentDialogId} key={dialog._id} {...dialog}/>)
+const Dialogs: React.FC<DialogsProps> = ({  items, userId, onSearch, inputValue }) => {
+   let dialogsArray = items.map( (dialog: any) => <DialogItem  key={dialog._id} {...dialog}/>)
     return (
         <div>
           <Layout className={style.dialogs_wrapper}>
@@ -30,10 +29,10 @@ const Dialogs: React.FC<DialogsProps> = ({ setCurrentDialogId, items, userId, on
             </div>
           <div>
          <Search
+            className={style.search}
             placeholder="input search user"
             onChange={e => onSearch(e.target.value)}
-            value={inputValue}
-            style={{marginTop: "20px"}}
+            value={inputValue}    
          />
          </div>
         </div >

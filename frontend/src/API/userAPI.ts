@@ -17,8 +17,7 @@ export const userAPI = {
             )
             .catch((error) => {
                 return {
-                    status:error
-                    
+                    status:error 
                 }
             })
             return response

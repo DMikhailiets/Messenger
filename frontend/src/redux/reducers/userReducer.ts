@@ -2,7 +2,8 @@ import { authAPI, userAPI } from '../../API';
 import redux from 'redux'
 
 const initialstate = {
-    token: null
+    token: null,
+    fullname: "User"
 }
 
 const userReducer = (state: any = initialstate, action: any) => {
@@ -30,7 +31,7 @@ const setUserToken = (token: string) => ({type: 'SET_USER_TOKEN', token})
 export const getMe = () => async (dispatch: redux.Dispatch) => {
     let response: any = await userAPI.getMe()
     if (response.status == 200){
-        dispatch(setUserData(response))
+        dispatch(setUserData(response.data))
     } else {
         return Error()
     }

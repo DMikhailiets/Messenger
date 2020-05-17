@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { default as BaseDialogs}   from '../components/Dialogs'
+import socket from '../../../core/socket'
 
 type DialogsProps = {
   getDialogs: any,
@@ -8,6 +9,11 @@ type DialogsProps = {
 }
 
 const Dialogs: React.FC<DialogsProps> = ({ setCurrentDialogId, dialogs_items, getDialogs, ...props}) => {
+  
+  const onNewDialog = () => {
+    console.log("dialog created")
+    getDialogs();
+  }
 
     const [inputValue, setValue] = useState("");
     const [filtred, setFiltredItems] = useState(Array.from(dialogs_items));
@@ -21,17 +27,22 @@ const Dialogs: React.FC<DialogsProps> = ({ setCurrentDialogId, dialogs_items, ge
       );
       setValue(value);
     };
+
+    
     useEffect(() => {
+  
       if(!dialogs_items.length){
         getDialogs()
+        socket.on("SERVER:DIALOG_CREATED", onNewDialog);
+        //return () => socket.removeListener("SERVER:DIALOG_CREATED", onNewDialog);
       } else {
         setFiltredItems(dialogs_items)
       }
+      
     },[dialogs_items])
   
     return ( 
       <BaseDialogs 
-      setCurrentDialogId={setCurrentDialogId}
       items={filtred}
       onSearch={onChangeInput}
       inputValue={inputValue}

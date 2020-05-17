@@ -8,21 +8,21 @@ type MessagesProps = {
     messagesItems: any
 }
 
+
+
 const Messages:React.FC<MessagesProps> = ({dialogId, getMessages, messagesItems}) => {     
-    console.log(messagesItems.length)
+    console.log(dialogId)
   useEffect(()=>{
-    if(messagesItems.length == 0) {
-        getMessages()
-    }
-  },[dialogId, messagesItems])
+    getMessages(dialogId)
+  },[dialogId])
   let messagesArray = messagesItems.map( (message: any) => <Message key={message._id} {...message}/>)
 
     return(
     <div>
         {
-            (messagesItems.length == 0)
-            ?<LoadingOutlined style={{minHeight: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}/>
-            : messagesArray
+          (messagesItems.length == 0)
+          ?<LoadingOutlined style={{minHeight: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}/>
+          : messagesArray
         }
     </div>
   )

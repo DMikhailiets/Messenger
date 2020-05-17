@@ -12,17 +12,17 @@ import { Result, Button } from 'antd';
 export const EmailConfirm = (props:any) => {
     return(
       <div  style={{minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      <Result
-     
-      status="success"
-      title="Registration was successful! Check your email to confirm your account!"
-      extra={[
-        <NavLink to='/'>
-          <Button type="primary" key="console">  Authorization page </Button>
-        </NavLink>
-      ]}
-    />
-    </div>
+        <Result
+          status="success"
+          title="Success!"
+          subTitle="Registration was successful! Check your email to confirm your account!"
+          extra={[
+            <NavLink to='/'>
+              <Button type="primary" key="console">  Authorization page </Button>
+            </NavLink>
+          ]}
+        />
+      </div>
     )
 }
 

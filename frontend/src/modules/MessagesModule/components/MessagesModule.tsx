@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col, Layout, Badge, Empty } from 'antd'
 import style from './messages.module.scss'
 import AuthorMessage from '../../../components/Message/AuthorMessage'
@@ -12,12 +12,15 @@ import Messages from '../../Messages'
 type MessagesProps = {
   getMessages?: any,
   messages?: any,
-  dialogId: string
+  dialogId: string,
+  location: {
+    pathname: string
+  }
 }
 
-const MessagesModule: React.FC<MessagesProps> = ({dialogId, getMessages, messages}, props:any) => {
+const MessagesModule: React.FC<MessagesProps> = ({dialogId, getMessages, messages, location}, props:any) => {
 const messagesRef: any = React.createRef()
- 
+ console.log(messages)
   useEffect(()=> {
     if(messagesRef.current){
       messagesRef.current.scrollTo(0,9999999)
@@ -44,12 +47,11 @@ const messagesRef: any = React.createRef()
             </div>
             </Layout>
             <Layout  className={style.messages_wrapper}>
-            {
-              
-             (dialogId )
+            { 
+             (location.pathname.slice(19) !== '')
               ? //<Route  path={props.location.pathname} render = { () => 
               <div  ref={messagesRef} className={style.dialogs_items} style={{marginTop: "15px"}}>
-                  <Messages messagesItems={messages} getMessages={getMessages} dialogId={dialogId}/>
+                  <Messages messagesItems={messages} getMessages={getMessages} dialogId={location.pathname.slice(19)}/>
                 </div>
                 //}/>
               : <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh'}}>

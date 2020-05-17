@@ -2,15 +2,20 @@ import React, { useState } from 'react'
 import { Row, Col, Layout, Input, Form, Button } from 'antd'
 import { Block } from '../../../components'
 import style from './register_form.module.css'
-import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
-import { Redirect, NavLink } from 'react-router-dom';
+import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons'
+import { Redirect, NavLink } from 'react-router-dom'
+import Notification from '../../../components/Notification'
+
 
 type RegisterFormProps = {
   registrationUser: Function
 }
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({registrationUser}) => {
-  const[validationStatus, setValidationStatus] = useState()
+  const[confirmStatus, setConfirmStatus] = useState(false)
+  if(confirmStatus){
+    return <Redirect to='/registration/confirm'/>
+  }
   //console.log(props)
     return(
         <div>
@@ -24,9 +29,18 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({registrationUser}) =>
                     <h2>Join Us</h2>
                   </div>
                  
-                  <Form onFinish={(value) => {registrationUser(value).then(() => {
-                    return <Redirect to='/registration/confirm'/>
-                  })}}>
+                  <Form onFinish={(value) => {registrationUser(value).then((data: any) => {
+                        if(data == "Error"){
+                          Notification({
+                            text: "This Email already exist!",
+                            type: 'error',
+                            title: "Oops..."
+                          })
+                          console.log('error')
+                        }else {
+                          setConfirmStatus(true)
+                        }
+                      })}}>
                     <Form.Item
                       // dependencies={['email']}
                       style={{display: "flex", alignItems: 'center'}}
@@ -41,10 +55,10 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({registrationUser}) =>
                       () => ({
                         validator(rule, value) {
                           console.log(value)
-                          if ( !value || value.length <= 25) {
+                          if ( !value || value.length <= 45) {
                             return Promise.resolve();
                           }
-                          return Promise.reject('Email is too long! Maximym length of Email is 25 symbols');
+                          return Promise.reject('Email is too long! Maximym length of Email is 45 symbols');
                         },
                       })]}
                       hasFeedback>
