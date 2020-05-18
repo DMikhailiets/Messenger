@@ -13,14 +13,16 @@ import differenceInMinutes from "date-fns/differenceInMinutes";
     lastMessage: {
       text: string,
       createdAt: string
-    }
+    },
+    user: any
     createdAt: string,
     partner: {
       _id: string,
       fullname: string,
       avatar: null | any,
       isOnline: boolean
-     }
+     },
+     setPartner: Function
 }
 
 const getMessageTime = (created_at: string ) => {
@@ -32,12 +34,12 @@ const getMessageTime = (created_at: string ) => {
     }
   };
 
-const Dialogs: React.FC<DialogProps> = ({ lastMessage, createdAt, _id, partner}) => {
-  console.log(createdAt)
+const Dialogs: React.FC<DialogProps> = ({ setPartner, user, lastMessage, createdAt, _id, partner}) => {
+  console.log(user)
   
     return (
       
-      <NavLink to={'/main_page/dialogs/'+ _id}>
+      <NavLink onClick={() => setPartner(partner)} to={'/main_page/dialogs/'+ _id}>
         <div className={style.dialog_wrapper}>
           <div className={style.message_wrapper}>
               <Avatar name={partner.fullname} avatar={partner.avatar} isOnline={partner.isOnline}/>

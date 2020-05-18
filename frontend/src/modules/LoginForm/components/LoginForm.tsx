@@ -53,12 +53,14 @@ export const LoginFormContainer = (props:any) => {
                   }
                     onFinishFailed={onFinishFailed}>
                   <Form.Item
+                  
                       validateStatus={isValidate ? 'success' : ''}
                       name="email" 
                       rules={[{ required: true, 
                                 message: 'Email is required!',
                       }]}>                      
                       <Input 
+                        allowClear={true}
                         prefix={<MailOutlined style={{color: 'grey'}} className="site-form-item-icon" />}
                         style={{marginTop: '15px', backgroundColor: 'white'}} 
                         placeholder=' email'
@@ -74,7 +76,7 @@ export const LoginFormContainer = (props:any) => {
                           },
                       ]}
                       >
-                         <Input.Password  prefix={<LockOutlined style={{color: 'grey'}} className="site-form-item-icon" />} placeholder='password'/>
+                         <Input.Password  allowClear={true} prefix={<LockOutlined style={{color: 'grey'}} className="site-form-item-icon" />} placeholder='password'/>
                       </Form.Item>
                       <Form.Item>{
                         isValidate

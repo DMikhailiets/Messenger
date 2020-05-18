@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
+import { AppState } from "../store";
 
-const getDialogs = (state:any) => {
+const getDialogs = (state: AppState) => {
     return state.dialogs.dialogs_items
 }
 

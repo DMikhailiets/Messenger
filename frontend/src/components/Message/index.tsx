@@ -1,8 +1,4 @@
 import React from 'react';
-import style from './message.module.scss';
-import { Comment, Tooltip, Avatar, Layout } from 'antd';
-import moment from 'moment';
-import classNames from "classnames";
 import AuthorMessage from './AuthorMessage'
 import SomeMessage from './SomeMessage'
 import { isToday } from 'date-fns/esm'
@@ -15,7 +11,7 @@ const getMessageTime = (created_at: string ) => {
     } else {
       return format(date, "dd.MM.yyyy");
     }
-  };
+  }
 
 type MessageProps = {
     _id: string,
@@ -32,20 +28,20 @@ type MessageProps = {
       fullname: string,
       avatar: null | any,
      },
+     dialog: any
 }
  
-const  Message: React.FC<MessageProps> = ({_id, text, createdAt, user, partner}) => {
-    console.log( "partner", partner )
-return(
-    <div>
-       {
-           true
-           ? <AuthorMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} user={user} />
-           : <SomeMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} user={partner}/>
-       } 
-        
-    </div>
-)
+const  Message: React.FC<MessageProps> = ({_id, text, dialog, createdAt, user, partner}) => {
+ 
+  return(
+      <div>
+        {
+            true
+            ? <AuthorMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} user={user} />
+            : <SomeMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} user={partner}/>
+        } 
+      </div>
+  )
 }
 
 export default Message;

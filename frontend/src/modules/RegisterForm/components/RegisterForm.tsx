@@ -65,7 +65,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({registrationUser}) =>
                       
                       <Input 
                         prefix={<MailOutlined className="site-form-item-icon" />}
-                        
+                        allowClear={true}
                         placeholder='email'
                        
                       />
@@ -94,7 +94,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({registrationUser}) =>
                     ]}
                       hasFeedback>
                         
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder=' username'/>
+                        <Input allowClear={true} prefix={<UserOutlined className="site-form-item-icon" />} placeholder=' username'/>
                     </Form.Item>
                     <Form.Item
                       
@@ -124,7 +124,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({registrationUser}) =>
                         })
                       ]}
                       hasFeedback>
-                         <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder='password'/>
+                         <Input.Password allowClear={true} prefix={<LockOutlined className="site-form-item-icon" />} placeholder='password'/>
                       </Form.Item>
                       <Form.Item
                         name="confirm"
@@ -163,7 +163,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({registrationUser}) =>
                             })
                         ]}
                       >
-                        <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder='confirm password' />
+                        <Input.Password allowClear={true} prefix={<LockOutlined className="site-form-item-icon" />} placeholder='confirm password' />
                       </Form.Item>
                       <Form.Item>
                         <Button htmlType="submit" style={{marginTop: '15px', width: '100%'}} type='primary' size='large'> Register now </Button>

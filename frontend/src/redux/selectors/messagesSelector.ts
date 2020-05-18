@@ -5,12 +5,11 @@ const getMessages = (state:any) => {
 }
 
 const getDialogId = (state:any) => {
-    
+
     return state.messages.dialogId
 } 
 
-export const fetchDialogId = createSelector(getDialogId, (dialogId: any) => {
-    
+export const fetchDialogId = createSelector(getDialogId, (dialogId: any) => {    
     return dialogId 
 })
 

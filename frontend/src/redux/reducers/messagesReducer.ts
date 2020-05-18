@@ -1,29 +1,16 @@
 import { dialogsAPI } from '../../API'
 
-
-
 let initialState = {
-    messages_items: [
-        
-    ],
-    dialogId: null
+    messages_items: [],
 }
 
-
 let setMessages = (messages: any) => ({type: 'SET_MESSAGES_ITEMS', messages}) 
-export let setCurrentDialogId = (dialogId: any) => ({type: 'SET_CURRENT_DIALOG_ID', dialogId})
 
 let messagesReducer = (state = initialState, action:any) => {
     switch(action.type) {
         case 'SET_MESSAGES_ITEMS': {
             return {
                 ...state, messages_items: action.messages
-            }
-        }
-        case 'SET_CURRENT_DIALOG_ID': {
-            
-            return {
-                ...state, dialogId: action.dialogId
             }
         }
         default : {
@@ -35,6 +22,14 @@ let messagesReducer = (state = initialState, action:any) => {
 export let getMessages = (dialogId: string) => async (dispatch: any) =>{
     let response = await dialogsAPI.getMessages(dialogId)
     dispatch(setMessages(response))
+}
+
+export let sendMessage = (message: any) => async (dispatch: any) =>{
+    let response = await dialogsAPI.sendMessage(message)
+    if (response.status == 200){
+    } else {
+        return Error()
+    }
 }
 
 export default messagesReducer

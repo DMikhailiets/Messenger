@@ -4,8 +4,8 @@ import MainPage from '../components/MainPage'
 import { connect } from 'react-redux'
 import { fetchUserData } from '../../../redux/selectors';
 
-const mapStateToProps = (state: AppState) => {
+let mapStateToProps = (state: AppState) => ({
     user: fetchUserData(state)
-}
+})
 
 export default connect(mapStateToProps, {getMe})(MainPage)

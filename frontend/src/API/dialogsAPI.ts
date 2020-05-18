@@ -9,6 +9,17 @@ export const dialogsAPI = {
         let response = await axios('./messages/?dialog='+ dialogId)
         console.log(response)
         return response.data
-    }
+    },
+    sendMessage:  (message: any) => {
+        let response =  axios.post('messages', message)
+            .then((res) => res
+            )
+            .catch((error) => {
+                return {
+                    status:error.response.status
+                }
+            })
+            return response
+    },
 }
 export default dialogsAPI

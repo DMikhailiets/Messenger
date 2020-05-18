@@ -5,28 +5,35 @@ import AuthorMessage from '../../../components/Message/AuthorMessage'
 import SomeMessage from '../../../components/Message/SomeMessage'
 import ChatInput from '../../../components/ChatInput'
 import { EllipsisOutlined } from '@ant-design/icons'
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import Messages from '../../Messages'
  
 
 type MessagesProps = {
   getMessages?: any,
   messages?: any,
-  dialogId: string,
   location: {
     pathname: string
-  }
+  },
+  partner: any,
+  dialog: any,
+  sendMessage: Function,
+  user: any
 }
 
-const MessagesModule: React.FC<MessagesProps> = ({dialogId, getMessages, messages, location}, props:any) => {
+const MessagesModule: React.FC<MessagesProps> = ({dialog, user, sendMessage, partner, getMessages, messages, location}, props:any) => {
+
 const messagesRef: any = React.createRef()
- console.log(messages)
   useEffect(()=> {
     if(messagesRef.current){
       messagesRef.current.scrollTo(0,9999999)
     }
   },[messages])
-  console.log(location.pathname.slice(19) )
+ 
+  if(!partner.fullname){
+    return <Redirect to='/main_page/dialogs'/>
+  }
+
     return(
         <div >
             <Layout className={style.header_wrapper}>
@@ -35,24 +42,27 @@ const messagesRef: any = React.createRef()
               <Row>
                 <Col span={23}>
                   <span className={style.chat__sidebar_header} style={{marginLeft: "5px"}}>
-                  <Badge  dot color='green' offset={[-75,12]}>Dubonoss</Badge>  
+                    {
+                      partner.isOnline
+                      ? <Badge  dot color='green' offset={[partner.fullname.length,12]}>{partner.fullname}</Badge>  
+                      : <>{partner.fullname}</>
+                    }
+                    
                   </span>
                 </Col>
                 <Col span={1}>
                 <EllipsisOutlined rotate={90} style={{fontSize: '15px'}}/>
                 </Col>
               </Row>
-               
               </div>
-              
             </div>
             </Layout>
             <Layout  className={style.messages_wrapper}>
             { 
-             (location.pathname.slice(19).length !== 0)
+             (location.pathname.slice(19).length !== 0 && location.pathname.length == 43 && location.pathname.slice(19,22) == '5ec')
               ? //<Route  path={props.location.pathname} render = { () => 
-              <div  ref={messagesRef} className={style.dialogs_items} style={{marginTop: "15px"}}>
-                  <Messages messagesItems={messages} getMessages={getMessages} dialogId={location.pathname.slice(19)}/>
+                <div  ref={messagesRef} className={style.dialogs_items} style={{marginTop: "15px"}}>
+                  <Messages dialog={dialog} partner={partner} messagesItems={messages} user={user} getMessages={getMessages} dialogId={location.pathname.slice(19)}/>
                 </div>
                 //}/>
               : <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh'}}>
@@ -61,7 +71,7 @@ const messagesRef: any = React.createRef()
             }
             </Layout>
             <Layout>
-            <ChatInput/>
+              <ChatInput dialogId={location.pathname.slice(19)} sendMessage={sendMessage}/>
             </Layout>
         </div>
     )

@@ -14,13 +14,19 @@ import { Avatar } from '../../../components'
 
 const { Sider } = Layout;
 
+type MainPageProps = {
+  getMe: Function,
+  user: {
+   fullname: string,
+   _id: string,
+  isOnline: boolean,
+  }
+}
 
 
-const MainPage = (props:any) => {
-  console.log(props)
-  useEffect(() => {
-    props.getMe()
-  },[])
+const MainPage: React.FC<MainPageProps> = ({user, getMe}, props:any) => {
+  console.log(user)
+  
   let [ collapsed, setEditMode ] = useState(true);
   let changeEditMode = () => {
       if(collapsed == false){
@@ -44,12 +50,12 @@ const MainPage = (props:any) => {
               {
                 collapsed 
                 ? <div className={style.user_side_bar_dropped}key="8"><div className={style.user_side_bar_collapsed}>
-                   <Avatar name='Denis'/>
+                   <Avatar name={user.fullname}/>
                   </div>
                   </div>
                 : <div style={{marginLeft: '5px'}} className={style.user_side_bar}>
-                    <Avatar  name='Denis'/>
-                    <span className={style.avatext} style={{marginLeft: '5px'}}>Denis</span>
+                    <Avatar  name={user.fullname}/>
+              <span className={style.avatext} style={{marginLeft: '5px'}}>{user.fullname}</span>
                   </div>
               }
               <Menu.Item key="1">
@@ -61,13 +67,13 @@ const MainPage = (props:any) => {
               <Menu.Item key="2">
                 <NavLink to="/main_page/logistics">
                   <PieChartOutlined />
-                  <span>Logistics</span>
+                  <span>Settings</span>
                 </NavLink>
               </Menu.Item>
               <Menu.Item key="3">
                 <NavLink to="/main_page/orders">
                 <FileDoneOutlined/>
-                  <span>Orders</span>
+                  <span>Logout</span>
                 </NavLink>
               </Menu.Item>
             </Menu>
