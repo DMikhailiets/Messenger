@@ -22,7 +22,8 @@ import differenceInMinutes from "date-fns/differenceInMinutes";
       avatar: null | any,
       isOnline: boolean
      },
-     setPartner: Function
+     setPartner: Function,
+     dialog: any
 }
 
 const getMessageTime = (created_at: string ) => {
@@ -34,31 +35,52 @@ const getMessageTime = (created_at: string ) => {
     }
   };
 
-const Dialogs: React.FC<DialogProps> = ({ setPartner, user, lastMessage, createdAt, _id, partner}) => {
-  console.log(user)
-  
+const Dialogs: React.FC<DialogProps> = ({ setPartner, user, dialog, lastMessage, createdAt, _id, partner}) => {
+  console.log(user._id, dialog.partner._id)
     return (
-      
-      <NavLink onClick={() => setPartner(partner)} to={'/main_page/dialogs/'+ _id}>
-        <div className={style.dialog_wrapper}>
-          <div className={style.message_wrapper}>
-              <Avatar name={partner.fullname} avatar={partner.avatar} isOnline={partner.isOnline}/>
-              
-                <div className={style.text_content}>
-                <div className={style.header_data}>
-                    <div className={style.author_title}>{partner.fullname}</div>
-                    <div className={style.date_title}>{getMessageTime(lastMessage.createdAt)}</div>
-                </div>
-                <div className={style.message}> 
-                  {(lastMessage.text.length > 40)
-                  ? (lastMessage.text.slice(0, 40) + ' ...')
-                  : (lastMessage.text)
-                }  
-                </div>
-              </div>
-              
-          </div>
-      </div>
+      <NavLink onClick={() => setPartner(user._id === dialog.author._id? partner : dialog.author)} to={'/main_page/dialogs/'+ _id}>
+        {
+         (user._id === dialog.author._id)//, dialog.author._id, dialog.partner._id)
+         ?<div className={style.dialog_wrapper}>
+         <div className={style.message_wrapper}>
+             <Avatar name={partner.fullname} avatar={partner.avatar} isOnline={partner.isOnline}/>
+             
+               <div className={style.text_content}>
+               <div className={style.header_data}>
+                   <div className={style.author_title}>{partner.fullname}</div>
+                   <div className={style.date_title}>{getMessageTime(lastMessage.createdAt)}</div>
+               </div>
+               <div className={style.message}> 
+                 {(lastMessage.text.length > 40)
+                 ? (lastMessage.text.slice(0, 40) + ' ...')
+                 : (lastMessage.text)
+               }  
+               </div>
+             </div>
+             
+         </div>
+     </div>  
+         :  <div className={style.dialog_wrapper}>
+         <div className={style.message_wrapper}>
+             <Avatar name={dialog.author.fullname} avatar={dialog.author.avatar} isOnline={dialog.author.isOnline}/>
+             
+               <div className={style.text_content}>
+               <div className={style.header_data}>
+                   <div className={style.author_title}>{dialog.author.fullname}</div>
+                   <div className={style.date_title}>{getMessageTime(lastMessage.createdAt)}</div>
+               </div>
+               <div className={style.message}> 
+                 {(lastMessage.text.length > 40)
+                 ? (lastMessage.text.slice(0, 40) + ' ...')
+                 : (lastMessage.text)
+               }  
+               </div>
+             </div>
+             
+         </div>
+     </div>
+        }
+       
       </NavLink>
      
     )

@@ -9,26 +9,26 @@ type MessageProps = {
     _id: string,
     text: string,
     createdAt: string,
-    user: {
+    partner: {
       _id: string,
       fullname: string,
       avatar: null | any,
      }
 }
 
-const SomeMessage: React.FC<MessageProps> = ({_id,text, createdAt, user }) => {
-   console.log(user)
+const SomeMessage: React.FC<MessageProps> = ({_id,text, createdAt, partner }) => {
+   
 return(
     <div className={style.message_wrapper}>
         <div className={style.avatar}>
         <Avatar
-          avatar={user.avatar}
-          name={user.fullname}
+          avatar={partner.avatar}
+          name={partner.fullname}
         />
         </div>
         <div className={style.message_content}>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                <div className={style.author_title}> Author</div>
+<div className={style.author_title}>{partner.fullname}</div>
                 <div className={style.date_title}> {createdAt}</div>
             </div>
             <div className={style.message}> 

@@ -25,8 +25,10 @@ type MainPageProps = {
 
 
 const MainPage: React.FC<MainPageProps> = ({user, getMe}, props:any) => {
-  console.log(user)
   
+  useEffect(() => {
+
+  },[user])
   let [ collapsed, setEditMode ] = useState(true);
   let changeEditMode = () => {
       if(collapsed == false){

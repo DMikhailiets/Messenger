@@ -55,19 +55,19 @@ const Dialogs: React.FC<DialogsProps> = ({ user, getMessages, sendMessage, messa
   //<MessagesModule />
     return ( 
       <Row>
-          <Col span={8}>
-            <BaseDialogs
-              user={user}
-              setPartner={setPartner} 
-              items={filtred}
-              onSearch={onChangeInput}
-              inputValue={inputValue}
-            />  
-          </Col>
-          <Col style={{backgroundColor: 'white'}}span={16}>
-            <MessagesModule sendMessage={sendMessage} partner={partner} messages={messages} user={user} getMessages={getMessages}/>
-          </Col>
-        </Row>
+        <Col span={8}>
+          <BaseDialogs
+            user={user}
+            setPartner={setPartner} 
+            items={filtred}
+            onSearch={onChangeInput}
+            inputValue={inputValue}
+          />  
+        </Col>
+        <Col style={{backgroundColor: 'white'}}span={16}>
+          <MessagesModule sendMessage={sendMessage} partner={partner} messages={messages} user={user} getMessages={getMessages}/>
+        </Col>
+      </Row>
 
                   
     );

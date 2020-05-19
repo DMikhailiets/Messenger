@@ -16,7 +16,7 @@ type DialogsProps = {
 }
 
 const Dialogs: React.FC<DialogsProps> = ({ setPartner, items, user,  onSearch, inputValue }) => {
-   let dialogsArray = items.map( (dialog: any) => <DialogItem  setPartner={setPartner} key={dialog._id} {...dialog}/>)
+   let dialogsArray = items.map( (dialog: any) => <DialogItem  createdAt={dialog.createdAt} partner={dialog.partner}_id={dialog._id} lastMessage={dialog.lastMessage} user={user} setPartner={setPartner} key={dialog._id} dialog={dialog}/>)
     return (
         <div>
           <Layout className={style.dialogs_wrapper}>

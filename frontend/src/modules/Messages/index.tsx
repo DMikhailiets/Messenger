@@ -9,12 +9,12 @@ type MessagesProps = {
     messagesItems: any,
     partner: any,
     dialog: any,
-    user: any
+    me: any
 }
 
 
 
-const Messages:React.FC<MessagesProps> = ({dialogId, user, dialog, partner, getMessages, messagesItems}) => {     
+const Messages:React.FC<MessagesProps> = ({dialogId, me, dialog, partner, getMessages, messagesItems}) => {     
   const onNewMessage = () => {
     getMessages(dialogId);
   }
@@ -32,7 +32,7 @@ const Messages:React.FC<MessagesProps> = ({dialogId, user, dialog, partner, getM
     return () => {socket.removeListener("SERVER:NEW_MESSAGE",  onNewMessage)};
   },[messagesItems])
 
-  let messagesArray = messagesItems.map( (message: any) => <Message dialog={dialog} partner={partner} key={message._id} {...message}/>)
+  let messagesArray = messagesItems.map( (message: any) => <Message dialog={dialog} me={me} author={message.user} partner={partner} key={message._id} {...message}/>)
 
     return(
     <div>

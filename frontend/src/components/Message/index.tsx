@@ -28,17 +28,19 @@ type MessageProps = {
       fullname: string,
       avatar: null | any,
      },
-     dialog: any
+     dialog: any,
+     author: any,
+     me: any
 }
  
-const  Message: React.FC<MessageProps> = ({_id, text, dialog, createdAt, user, partner}) => {
- 
+const  Message: React.FC<MessageProps> = ({_id, me, author, text, dialog, createdAt, user, partner}) => {
+ console.log(me._id, author._id)
   return(
       <div>
         {
-            true
+           (me._id == author._id)
             ? <AuthorMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} user={user} />
-            : <SomeMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} user={partner}/>
+            : <SomeMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} partner={partner}/>
         } 
       </div>
   )

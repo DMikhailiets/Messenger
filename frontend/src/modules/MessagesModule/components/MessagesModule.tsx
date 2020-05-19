@@ -28,7 +28,7 @@ const messagesRef: any = React.createRef()
     if(messagesRef.current){
       messagesRef.current.scrollTo(0,9999999)
     }
-  },[messages])
+  },[messages, partner, user])
  
   if(!partner.fullname){
     return <Redirect to='/main_page/dialogs'/>
@@ -59,10 +59,11 @@ const messagesRef: any = React.createRef()
             </Layout>
             <Layout  className={style.messages_wrapper}>
             { 
-             (location.pathname.slice(19).length !== 0 && location.pathname.length == 43 && location.pathname.slice(19,22) == '5ec')
+             //(location.pathname.slice(19).length !== 0 && location.pathname.length == 43 && location.pathname.slice(19,22) == '5ec')
+             (!partner.length)
               ? //<Route  path={props.location.pathname} render = { () => 
                 <div  ref={messagesRef} className={style.dialogs_items} style={{marginTop: "15px"}}>
-                  <Messages dialog={dialog} partner={partner} messagesItems={messages} user={user} getMessages={getMessages} dialogId={location.pathname.slice(19)}/>
+                  <Messages dialog={dialog} partner={partner} messagesItems={messages} me={user} getMessages={getMessages} dialogId={location.pathname.slice(19)}/>
                 </div>
                 //}/>
               : <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh'}}>
