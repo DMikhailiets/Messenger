@@ -4,12 +4,14 @@ import { Layout, Menu, Badge, Row, Col } from 'antd';
 import {
   DesktopOutlined,
   PieChartOutlined,
-  FileDoneOutlined
+  FileDoneOutlined,
+  LoadingOutlined
 } from '@ant-design/icons';
 import { NavLink, Redirect } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import DialogsPage from '../../../pages/dialogs_page'
 import { Avatar } from '../../../components'
+import notification from '../../../components/Notification';
 
 
 const { Sider } = Layout;
@@ -20,14 +22,22 @@ type MainPageProps = {
    fullname: string,
    _id: string,
   isOnline: boolean,
-  }
+  },
+  logout: Function
 }
 
-
-const MainPage: React.FC<MainPageProps> = ({user, getMe}, props:any) => {
+const MainPage: React.FC<MainPageProps> = ({user, getMe, logout}, props:any) => {
   
   useEffect(() => {
-
+    if(user.fullname == 'User'){
+      getMe()
+      notification({
+        text: "nice to meet you!)",
+        type: 'success',
+        title: "Success!",
+        duration: 5
+      })
+    }
   },[user])
   let [ collapsed, setEditMode ] = useState(true);
   let changeEditMode = () => {
@@ -37,16 +47,20 @@ const MainPage: React.FC<MainPageProps> = ({user, getMe}, props:any) => {
           setEditMode(false);
       }
   }
-  // if(!props.authData){
-  //   return (
-  //     <Redirect to='/'/>
-  //   )
-  // }
+  if(!localStorage.token){
+    return (
+      <Redirect to='/'/>
+    )
+  }
   
       return (
       
         <Layout style={{ minHeight: '100vh' }}>
-         <Sider width={130}  collapsedWidth={80} collapsed={collapsed} onCollapse={changeEditMode} onMouseEnter={() => (setEditMode(false))} onMouseLeave={() => (setEditMode(true))}>
+          {
+            (user.fullname === 'User')
+            ? <LoadingOutlined />
+            : <>
+            <Sider width={130}  collapsedWidth={80} collapsed={collapsed} onCollapse={changeEditMode} onMouseEnter={() => (setEditMode(false))} onMouseLeave={() => (setEditMode(true))}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline"> 
               {
@@ -72,7 +86,7 @@ const MainPage: React.FC<MainPageProps> = ({user, getMe}, props:any) => {
                   <span>Settings</span>
                 </NavLink>
               </Menu.Item>
-              <Menu.Item key="3">
+              <Menu.Item onClick={() => logout()}key="3">
                 <NavLink to="/main_page/orders">
                 <FileDoneOutlined/>
                   <span>Logout</span>
@@ -94,6 +108,9 @@ const MainPage: React.FC<MainPageProps> = ({user, getMe}, props:any) => {
             <Route path="/main_page/logistics" render = { () => <div>Hi</div>}/>
             <Route path="/main_page/orders" render = { () => <div>Hi</div>}/>
           </Layout>
+              </>
+          }
+         
         </Layout>
       );
     

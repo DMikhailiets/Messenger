@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store'
 import { getMe } from './redux/reducers/userReducer';
 
-store.dispatch(getMe())
+//store.dispatch(getMe())
 
 ReactDOM.render(
   <React.StrictMode>

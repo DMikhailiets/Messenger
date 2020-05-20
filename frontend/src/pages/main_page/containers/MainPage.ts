@@ -1,4 +1,4 @@
-import { getMe } from './../../../redux/reducers/userReducer';
+import { getMe, logout } from './../../../redux/reducers/userReducer';
 import { AppState } from './../../../redux/store';
 import MainPage from '../components/MainPage'
 import { connect } from 'react-redux'
@@ -8,4 +8,4 @@ let mapStateToProps = (state: AppState) => ({
     user: fetchUserData(state)
 })
 
-export default connect(mapStateToProps, {getMe})(MainPage)
+export default connect(mapStateToProps, {getMe, logout})(MainPage)

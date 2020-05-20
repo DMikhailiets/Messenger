@@ -11,8 +11,8 @@ const axios_instance = axios.create(
 )
 
 export const userAPI = {
-    getMe: () => {
-        let response =  axios_instance('/users/me')
+    getMe: (token: string) => {
+        let response =  axios_instance('/users/me', {headers: {'tokensss': token}})
             .then((res) => res
             )
             .catch((error) => {

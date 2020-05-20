@@ -1,3 +1,4 @@
+import { LockOutlined } from '@ant-design/icons';
 import { authAPI, userAPI } from '../../API';
 import redux from 'redux'
 
@@ -6,18 +7,28 @@ const initialstate = {
     fullname: "User"
 }
 
+
+
 const userReducer = (state: any = initialstate, action: any) => {
     switch(action.type){
         case 'SET_USER_DATA': {
+            
             return {
                 ...state,
-                ...action.userData
+                ...action.userData,
+                
             }
         }
         case 'SET_USER_TOKEN': {
             return {
                 ...state,
                 token: action.token
+            }
+        }
+        case 'LOGOUT': {
+            return {
+                token: null,
+                fullname: "User"
             }
         }
         default: return state
@@ -28,8 +39,11 @@ const userReducer = (state: any = initialstate, action: any) => {
 const setUserData = (userData: any) => ({type: 'SET_USER_DATA', userData})
 const setUserToken = (token: string) => ({type: 'SET_USER_TOKEN', token})
 
-export const getMe = () => async (dispatch: redux.Dispatch) => {
-    let response: any = await userAPI.getMe()
+const logOut = () => ({type: 'LOGOUT'})
+
+export const getMe = (token: any) => async (dispatch: redux.Dispatch) => {
+    console.log(token)
+    let response: any = await userAPI.getMe(token)
     if (response.status == 200){
         dispatch(setUserData(response.data))
     } else {
@@ -37,11 +51,18 @@ export const getMe = () => async (dispatch: redux.Dispatch) => {
     }
 }
 
+export const logout = () => async (dispatch: redux.Dispatch) => {
+    window.localStorage.removeItem('token')
+    dispatch(logOut())
+    window.location.reload()
+}
+
 export const authUser = (authData: any) => async (dispatch: redux.Dispatch) =>  {
     let response: any = await authAPI.authUser(authData)
     if (response.status == 200){
         dispatch(setUserToken(response.data.token))
-        localStorage.setItem("token", response.data.token)
+        window.localStorage.setItem("token", response.data.token)
+        //process.env.token = response.data.token
     } else {
         return Error()
     }

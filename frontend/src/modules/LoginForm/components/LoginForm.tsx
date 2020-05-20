@@ -12,7 +12,7 @@ export const LoginFormContainer = (props:any) => {
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo)
   }
-  if(props.userData.token){//localStorage.token
+  if(localStorage.token){//localStorage.token
     return <Redirect to='/main_page/dialogs'/>
   }
     return(
@@ -37,10 +37,9 @@ export const LoginFormContainer = (props:any) => {
                           type: 'error',
                           title: "Oops..."
                         })
-                        console.log('error')
                       }else{
-                        props.getMe()
-                        console.log('ok')
+                        //props.getMe(props.userData.token)
+                        window.location.reload();
                         setIsValidate(true)
                         notification({
                           text: "nice to meet you!)",
