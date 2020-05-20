@@ -1,5 +1,6 @@
 import redux from 'redux'
 import { registrationAPI } from '../../API/registrationAPI'
+import crypto from 'crypto-js';
 
 let initialState = {
 
@@ -14,7 +15,8 @@ const registrationReducer = (state = initialState, action: redux.Action) => {
 }
 
 export const registrationUser = (regData:any) => async (dispatch: redux.Dispatch) => {
-    let response: any = await registrationAPI.reghUser(regData)
+    //let password  = crypto.SHA256(regData.password)
+    let response: any = await registrationAPI.reghUser({email: regData.email, fullname: regData.fullname, password: crypto.SHA256(regData.password).toString()})
     if (response.status == 200){
         console.log('User created!')
     } else {

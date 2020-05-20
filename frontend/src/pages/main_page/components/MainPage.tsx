@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import style from './main_page.module.css'
 import { Layout, Menu, Badge, Row, Col } from 'antd';
 import {
-  DesktopOutlined,
-  PieChartOutlined,
+  SettingOutlined,
+  LogoutOutlined,
   FileDoneOutlined,
-  LoadingOutlined
+  LoadingOutlined,
+  MessageOutlined
 } from '@ant-design/icons';
 import { NavLink, Redirect } from 'react-router-dom';
 import { Route } from 'react-router-dom';
@@ -31,14 +32,26 @@ const MainPage: React.FC<MainPageProps> = ({user, getMe, logout}, props:any) => 
   useEffect(() => {
     if(user.fullname == 'User'){
       getMe()
+    }
+    if(user.fullname !== 'User'){
       notification({
-        text: "nice to meet you!)",
+        text: "nice to meet you, "+ user.fullname+'!)',
         type: 'success',
         title: "Success!",
         duration: 5
       })
     }
   },[user])
+  // useEffect(() => {
+  //   if(user.fullname !== 'User'){
+  //     notification({
+  //       text: "nice to meet you!)",
+  //       type: 'success',
+  //       title: "Success!",
+  //       duration: 5
+  //     })
+  //   }
+  // },[])
   let [ collapsed, setEditMode ] = useState(true);
   let changeEditMode = () => {
       if(collapsed == false){
@@ -76,19 +89,19 @@ const MainPage: React.FC<MainPageProps> = ({user, getMe, logout}, props:any) => 
               }
               <Menu.Item key="1">
                 <NavLink to="/main_page/dialogs">
-                  <DesktopOutlined />
+                  <MessageOutlined />
                   <span>Dialogs</span>
                 </NavLink>
               </Menu.Item>
               <Menu.Item key="2">
                 <NavLink to="/main_page/logistics">
-                  <PieChartOutlined />
+                  <SettingOutlined/>
                   <span>Settings</span>
                 </NavLink>
               </Menu.Item>
               <Menu.Item onClick={() => logout()}key="3">
                 <NavLink to="/main_page/orders">
-                <FileDoneOutlined/>
+                <LogoutOutlined/>
                   <span>Logout</span>
                 </NavLink>
               </Menu.Item>

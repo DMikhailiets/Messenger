@@ -6,7 +6,6 @@ import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons'
 import { Redirect, NavLink } from 'react-router-dom'
 import Notification from '../../../components/Notification'
 
-
 type RegisterFormProps = {
   registrationUser: Function
 }
