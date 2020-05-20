@@ -77,7 +77,7 @@ class UserController {
       email: req.body.email,
       fullname: req.body.fullname,
       password: req.body.password
-    };
+    }
     const user = new UserModel(postData)
     user
       .save()
@@ -110,8 +110,8 @@ class UserController {
     const postData = {
       email: req.body.email,
       password: req.body.password
-    };
-
+    }
+    console.log(postData.password)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
