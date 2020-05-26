@@ -25,6 +25,7 @@ const createRoutes = (app: express.Express, io: socket.Server) => {
   
   app.get('/user/:id', cors(corsOptions), UserController.show)
   app.get('/users/me', cors(corsOptions), UserController.getMe)
+  app.get("/users/find", cors(corsOptions), UserController.findUsers);
   app.delete('/user/:id', cors(corsOptions), UserController.delete)
   app.post('/user/login', cors(corsOptions), loginValidation, UserController.login)
   app.post('/user/registration', cors(corsOptions), registerValidation, UserController.create)

@@ -15,14 +15,6 @@ class UserController {
   constructor(io: socket.Server) {
     this.io = io
   }
-  // TODO: В конструкторе следить за методоами сокета относящихся к юзеру и вызывать соотв. методы
-  // constructor() {
-  //   io.on("connection", function(socket: any) {
-  //     socket.on('', function(obj: any) {
-  //       // Вызывать метод для создания сущности
-  //     })
-  //   });
-  // }
 
   show = (req: express.Request, res: express.Response) => {
     const id: string = req.params.id;
@@ -34,6 +26,23 @@ class UserController {
       }
       res.json(user);
     });
+  };
+
+  findUsers = (req: any, res: express.Response) => {
+    const query: string = req.query.query;
+    console.log(query)
+    UserModel.find()
+      .or([
+        { fullname: new RegExp(query, "i") },
+        { email: new RegExp(query, "i") }
+      ])
+      .then((users: any) => res.json(users))
+      .catch((err: any) => {
+        return res.status(404).json({
+          status: "error",
+          message: err
+        });
+      });
   };
 
   getMe = (req: any, res: express.Response) => {
