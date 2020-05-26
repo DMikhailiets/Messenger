@@ -5,6 +5,8 @@ export const dialogsAPI = {
         let response = await axios('./dialogs')
         return response.data
     },
+    create: ( data: any ) => {
+        return axios.post("/dialogs", { partner: data.partner, text: data.text })},
     getMessages: async (dialogId: string) => {
         let response = await axios('./messages/?dialog='+ dialogId)
         console.log(response)

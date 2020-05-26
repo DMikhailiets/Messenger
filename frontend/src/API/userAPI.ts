@@ -22,17 +22,9 @@ export const userAPI = {
             })
             return response
     },
-    searchUser: (username: string) => {
-        let response =  axios_instance('/users/find', {headers: {'tokensss': username}})
-            .then((res) => res
-            )
-            .catch((error) => {
-                return {
-                    status:error 
-                }
-            })
-            return response
-    }
+    findUsers: (query: any) => {
+        console.log(query)
+        return axios.get("/users/find?query=" + query)}
 }
 
 

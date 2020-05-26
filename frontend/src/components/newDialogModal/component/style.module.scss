@@ -1,0 +1,29 @@
+.dialogs_wrapper {
+    // padding: 15px 15px;
+    background-color: white;
+    min-height: 100vh;
+    border-right: 1px solid rgb(242, 242, 242);
+    
+}
+
+.chat__sidebar_header {
+    padding: 15px 0;
+    margin: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(242, 242, 242);
+}
+
+.dialogs_items {
+    overflow: auto;
+    max-height: 80vh;
+}
+
+.search {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 45px;
+    width: 93%;
+}
+

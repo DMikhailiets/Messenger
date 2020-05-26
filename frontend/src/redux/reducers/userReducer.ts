@@ -59,14 +59,14 @@ export const logout = () => async (dispatch: redux.Dispatch) => {
 }
 //findUsers: query => axios.get("/user/find?query=" + query)
 
-export const findUser = (username: string) => async (dispatch: redux.Dispatch) => {
-    let response: any = await userAPI.searchUser(username)
-    if (response.status == 200){
-        return response
-    } else {
-        return Error()
-    }
-}
+// export const findUser = (username: string) => async (dispatch: redux.Dispatch) => {
+//     let response: any = await userAPI.searchUser(username)
+//     if (response.status == 200){
+//         return response
+//     } else {
+//         return Error()
+//     }
+// }
 export const authUser = (authData: any) => async (dispatch: redux.Dispatch) =>  {
     let response: any = await authAPI.authUser({email: authData.email, password: crypto.SHA256(authData.password).toString()})
     if (response.status == 200){

@@ -27,21 +27,21 @@ type DialogsProps = {
 const Dialogs: React.FC<DialogsProps> = ({ user, getMessages, sendMessage, messages, dialogs_items, getDialogs, ...props}) => {
   const[partner, setPartner] = useState([])
   const onNewDialog = () => {
-    getDialogs();
+    getDialogs()
   }
-
-    const [inputValue, setValue] = useState("");
-    const [filtred, setFiltredItems] = useState(Array.from(dialogs_items));
+  console.log(dialogs_items)
+    const [inputValue, setValue] = useState("")
+    const [filtred, setFiltredItems] = useState(Array.from(dialogs_items))
   
     const onChangeInput = (value:any) => {
       setFiltredItems(
         dialogs_items.filter( 
-          (dialog:any) =>
-            dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
+          (dialog:any) => 
+            dialog.author.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0 || dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0 
         )
-      );
-      setValue(value);
-    };
+      )
+      setValue(value)
+    }
  
     useEffect(() => {
       socket.on("SERVER:DIALOG_CREATED", onNewDialog)
@@ -50,7 +50,7 @@ const Dialogs: React.FC<DialogsProps> = ({ user, getMessages, sendMessage, messa
       } else {
         setFiltredItems(dialogs_items)
       }
-      return () => {socket.removeListener("SERVER:DIALOG_CREATED", onNewDialog)};
+      return () => {socket.removeListener("SERVER:DIALOG_CREATED", onNewDialog)}
     },[dialogs_items, ])
   //<MessagesModule />
     return ( 
