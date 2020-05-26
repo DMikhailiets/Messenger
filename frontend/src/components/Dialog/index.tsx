@@ -1,12 +1,9 @@
 import React from 'react'
 import style from './dialog.module.scss'
-import { Col, Row, Layout, Badge } from 'antd'
-import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import {  Avatar } from '../../components';
 import format from "date-fns/format";
 import { isToday } from 'date-fns';
-import differenceInMinutes from "date-fns/differenceInMinutes";
 
  type DialogProps = {
     _id: string,
@@ -82,7 +79,6 @@ const Dialogs: React.FC<DialogProps> = ({ setPartner, user, dialog, lastMessage,
         }
        
       </NavLink>
-     
     )
 }
 

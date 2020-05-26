@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
 import style from './dialogs.module.scss'
-import Icon, { FormOutlined, TeamOutlined } from '@ant-design/icons';
+import Icon, { FormOutlined, TeamOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import { DialogItem, NewDialogModal } from '../../../components';
 import { Layout, Modal, Button, Input, Empty } from 'antd';
 
@@ -15,18 +15,16 @@ type DialogsProps = {
   user: any
 }
 
-
-
-
 const Dialogs: React.FC<DialogsProps> = ({ setPartner, items, user,  onSearch, inputValue }) => {
- 
+  useEffect(() => {
+  }, [items])
    let dialogsArray = items.map( (dialog: any) => <DialogItem  createdAt={dialog.createdAt} partner={dialog.partner}_id={dialog._id} lastMessage={dialog.lastMessage} user={user} setPartner={setPartner} key={dialog._id} dialog={dialog}/>)
     return (
         <div>
          <NewDialogModal/>
           <Layout className={style.dialogs_wrapper}>
           <div className="chat__sidebar">
-           
+         
           <div>
          <Search
             className={style.search}

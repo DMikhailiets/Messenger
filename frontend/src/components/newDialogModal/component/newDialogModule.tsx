@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { Modal, Button, Form, Select, Input } from 'antd'
 import { TeamOutlined, FormOutlined } from '@ant-design/icons'
 import style from './style.module.scss'
@@ -23,10 +23,13 @@ type ModalProps = {
   messageText: string
 }
 
-const NewDialogModal: React.FC<ModalProps> = ({user, visible, inputValue, messageText, selectedUserId, isLoading, users =[], onShow, onClose, onSearch, onChangeInput, onSelectUser, onChangeTextArea, onModalOk}) => {
+const NewDialogModal: React.FC<ModalProps> = ({user, visible, inputValue, messageText, selectedUserId, isLoading, users = [], onShow, onClose, onSearch, onChangeInput, onSelectUser, onChangeTextArea, onModalOk}) => {
   const options = users.map((user: any) => (
     <Option id={user._id} value={user._id}key={user._id}>{user.fullname}</Option>
-  ));
+  ))
+  useEffect(() => {
+
+  },[visible])
   
   return (
     <div style={{backgroundColor: 'white'}}>
@@ -39,11 +42,12 @@ const NewDialogModal: React.FC<ModalProps> = ({user, visible, inputValue, messag
             </div>
             
       <Modal
-        title="Создать диалог"
+        title="Create dialog"
         visible={visible}
+        onCancel={() => onClose()}
         footer={[
           <Button key="back" onClick={() => onClose()}>
-            Закрыть
+            Close
           </Button>,
           <Button
             disabled={!messageText}
@@ -52,7 +56,7 @@ const NewDialogModal: React.FC<ModalProps> = ({user, visible, inputValue, messag
             loading={isLoading}
             onClick={onModalOk}
           >
-            Создать
+            Create
           </Button>
         ]}
       >
