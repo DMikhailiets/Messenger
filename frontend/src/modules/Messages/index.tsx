@@ -9,14 +9,16 @@ type MessagesProps = {
     messagesItems: any,
     partner: any,
     dialog: any,
-    me: any
+    me: any,
+    getDialogs: Function
 }
 
 
 
-const Messages:React.FC<MessagesProps> = ({dialogId, me, dialog, partner, getMessages, messagesItems}) => {     
+const Messages:React.FC<MessagesProps> = ({getDialogs, dialogId, me, dialog, partner, getMessages, messagesItems}) => {     
   const onNewMessage = () => {
-    getMessages(dialogId);
+    getMessages(dialogId)
+    getDialogs()
   }
 
   useEffect(() => {

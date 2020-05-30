@@ -4,9 +4,9 @@ import style from './messages.module.scss'
 import AuthorMessage from '../../../components/Message/AuthorMessage'
 import SomeMessage from '../../../components/Message/SomeMessage'
 import ChatInput from '../../../components/ChatInput'
-import { EllipsisOutlined } from '@ant-design/icons'
 import { Route, Redirect } from 'react-router-dom';
 import Messages from '../../Messages'
+import { EllipsisOutlined } from '@ant-design/icons'
  
 
 type MessagesProps = {
@@ -15,13 +15,14 @@ type MessagesProps = {
   location: {
     pathname: string
   },
+  getDialogs: Function,
   partner: any,
   dialog: any,
   sendMessage: Function,
   user: any
 }
 
-const MessagesModule: React.FC<MessagesProps> = ({dialog, user, sendMessage, partner, getMessages, messages, location}, props:any) => {
+const MessagesModule: React.FC<MessagesProps> = ({getDialogs, dialog, user, sendMessage, partner, getMessages, messages, location}, props:any) => {
 
 const messagesRef: any = React.createRef()
   useEffect(()=> {
@@ -63,7 +64,7 @@ const messagesRef: any = React.createRef()
              (!partner.length)
               ? //<Route  path={props.location.pathname} render = { () => 
                 <div  ref={messagesRef} className={style.dialogs_items} style={{marginTop: "15px"}}>
-                  <Messages dialog={dialog} partner={partner} messagesItems={messages} me={user} getMessages={getMessages} dialogId={location.pathname.slice(19)}/>
+                  <Messages getDialogs={getDialogs} dialog={dialog} partner={partner} messagesItems={messages} me={user} getMessages={getMessages} dialogId={location.pathname.slice(19)}/>
                 </div>
                 //}/>
               : <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh'}}>

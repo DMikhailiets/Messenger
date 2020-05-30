@@ -58,7 +58,7 @@ const Dialogs: React.FC<DialogsProps> = ({ user, getMessages, sendMessage, messa
         />  
       </Col>
       <Col style={{backgroundColor: 'white'}}span={16}>
-        <MessagesModule sendMessage={sendMessage} partner={partner} messages={messages} user={user} getMessages={getMessages}/>
+        <MessagesModule sendMessage={sendMessage} getDialogs={getDialogs} partner={partner} messages={messages} user={user} getMessages={getMessages}/>
       </Col>
     </Row>             
   )

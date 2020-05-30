@@ -23,3 +23,11 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.EllipsisOutlined {
+    margin-left: 5px;
+    :hover {
+        cursor: pointer;
+        color: black
+    }
+}

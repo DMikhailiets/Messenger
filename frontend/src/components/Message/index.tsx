@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AuthorMessage from './AuthorMessage'
 import SomeMessage from './SomeMessage'
 import { isToday } from 'date-fns/esm'
 import format from "date-fns/format"
+import { Popover, Button } from 'antd';
 
 const getMessageTime = (created_at: string ) => {
     let date = new Date(created_at)
@@ -32,16 +33,27 @@ type MessageProps = {
      author: any,
      me: any
 }
+
+const content = (
+  <div>
+    <p>Content</p>
+    <p>Content</p>
+  </div>
+)
  
 const  Message: React.FC<MessageProps> = ({_id, me, author, text, dialog, createdAt, user, partner}) => {
- console.log(me._id, author._id)
+const[popover, setPopover] = useState(false)
   return(
       <div>
         {
-           (me._id == author._id)
-            ? <AuthorMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} user={user} />
-            : <SomeMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} partner={partner}/>
-        } 
+          (me._id == author._id)
+          ? 
+              <div><AuthorMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} user={user} />   </div> 
+           
+          : <Popover placement="topLeft"content={content} title="Title" trigger="click"> 
+              <div> <SomeMessage _id={_id} text={text} createdAt={getMessageTime(createdAt)} partner={partner}/>  </div> 
+            </Popover>
+        }    
       </div>
   )
 }

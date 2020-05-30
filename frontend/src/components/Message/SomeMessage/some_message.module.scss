@@ -30,3 +30,16 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.EllipsisOutlined {
+    margin-right: 5px;
+    :hover {
+        cursor: pointer;
+        color: black
+    }
+}
+
+.message {
+    display: flex;
+    justify-content: flex-end;
+}
